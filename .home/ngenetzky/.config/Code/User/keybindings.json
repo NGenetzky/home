@@ -1,0 +1,51 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+k r",
+        "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+k d",
+        "command": "workbench.action.files.revealActiveFileInWindows",
+    },
+    {
+        "key": "ctrl+\\", // Used for kermit
+        "command": "-",
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // ngenetzky.tmux
+    //
+    {
+        "key": "ctrl+a",
+        "command": "multiCommand.terminal_tmux_prefix",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "multiCommand.terminal_tmux_prefix",
+        "when": "explorerViewletFocus"
+    },
+    {
+        "key": "ctrl+k t", // Toggle TerminalMode
+        "command": "workbench.action.toggleMaximizedPanel",
+    },
+    // ngenetzky.tmux
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // ngenetzky.vim
+    //
+    {
+        "key": "ctrl+k v",
+        "command": "extension.openCurrentFileInVimTer",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+k v",
+        "command": "extension.openSelectedFileInVimTer",
+        "when": "explorerViewletFocus"
+    },
+    // ngenetzky.vim
+    //
+    ////////////////////////////////////////////////////////////////////////////
+]
