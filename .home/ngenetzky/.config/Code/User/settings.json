@@ -1,0 +1,126 @@
+{
+    "editor.minimap.enabled": false,
+    "files.insertFinalNewline": true,
+    "window.zoomLevel": 0,
+    // "workbench.colorTheme": "Braver's Solarized Dark (themed workbench)",
+    // "workbench.colorTheme": "Solarized Dark",
+
+    // terminal.integrated.fontFamily
+    // terminal.integrated.fontSize
+    // terminal.integrated.fontWeight
+    // terminal.integrated.fontWeightBold
+    // terminal.integrated.lineHeight
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // jira-plugin
+    //
+    "jira-plugin.workingProject": "",
+    "jira-plugin.baseUrl": "https://vaddio.atlassian.net",
+    "jira-plugin.username": "ngenetzky",
+    // jira-plugin
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // gitlens
+    //
+    "gitlens.defaultDateStyle": "absolute",
+    "gitlens.defaultDateFormat": "YYYY-MM-DDTHH:mm:ss.SSS",
+    //
+    // gitlens
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // matthias-schwarze.vimter
+    //
+    // Specifies the path to the terminal version of VIM.
+    "VimTer.vimPath": "/usr/bin/vim",
+    // matthias-schwarze.vimter
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // ryuta46.multi-command
+    //
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.terminal_tmux_prefix",
+            "sequence": [
+                "workbench.action.terminal.focus",
+                {
+                    // This assumes you have tmux running in the integrated
+                    // terminal and your prefix is <C-a>.
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        // http://ascii-table.com/ansi-escape-sequences.php
+                        "text": "\u0001" // <C-a>
+                        // "text": "\u0002" // <C-b>
+                    }
+                }
+            ]
+        },
+    ],
+    //
+    // ryuta46.multi-command
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // vscodevim.vim
+    //
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    // "vim.insertModeKeyBindings": [
+    //     {
+    //         "before": [
+    //             "j",
+    //             "j"
+    //         ],
+    //         "after": [
+    //             "<Esc>"
+    //         ]
+    //     }
+    // ],
+    // "vim.normalModeKeyBindingsNonRecursive": [
+    //     {
+    //         "before": [
+    //             "<leader>",
+    //             "d"
+    //         ],
+    //         "after": [
+    //             "d",
+    //             "d"
+    //         ]
+    //     },
+    // ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-k>": false,
+        // "<C-r>": false, // I like redo.
+    },
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "editor.renderWhitespace": "all",
+    "[yaml]": {
+        "editor.tabSize": 2,
+    },
+    "catch2TestExplorer.userId": "014f7ab1544eeae0a9c4c928f8d37e6dbc752b61",
+    "catch2TestExplorer.logSentry": "disable_1",
+    "terminal.integrated.fontSize": 15,
+    "plantuml.diagramsRoot": "docs/diagrams/",
+    "plantuml.exportFormat": "svg",
+    "plantuml.exportOutDir": "docs/diagrams/",
+    "editor.minimap.scale": 1.5,
+    "cSpell.userWords": [
+        "cedux"
+    ],
+    //
+    // vscodevim.vim
+    ////////////////////////////////////////////////////////////////////////////
+}
