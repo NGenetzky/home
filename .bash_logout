@@ -1,0 +1,1 @@
+.home/default/.bash_logout
