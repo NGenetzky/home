@@ -1,4 +1,7 @@
 
+# Disable git-annex all files
+* annex.largefiles=nothing
+
 * annex.backend=MD5E
 * annex.largefiles=(not(mimetype=text/*))
 **/.git* annex.largefiles=nothing
