@@ -1,0 +1,29 @@
+# Location of your dotfiles in $HOME
+# DOTFILES=.dotfiles
+
+# dotfiles to symlink
+#
+# srcfile:dstfile
+# dstfile will be '.$srcfile' by default (with path removed)
+#
+[files]
+config/bash/bash_logout:.bash_logout
+config/bash/bashrc:.bashrc
+config/bash/profile:.bash_profile
+config/bash/profile:.profile
+config/git/gitconfig:.gitconfig
+config/Code/User/keybindings.json:.config/Code/User/keybindings.json
+config/Code/User/settings.json:.config/Code/User/settings.json
+config/Code/User/snippets:.config/Code/User/snippets
+config/tmux/tmux.conf:.tmux.conf
+[endfiles]
+
+# Hosts to sync
+## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
+[hosts]
+lnx-nateg git=ANY
+ngenetzky-beast git=ANY
+ngenetzky-skull git=ANY
+ngenetzky-ultra git=ANY
+[endhosts]
+
