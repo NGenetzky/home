@@ -7,7 +7,7 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('/home/ngenetzky/.local/share/editor-vim//plugged')
+call plug#begin('~/.local/share/editor-vim/plugged')
 
 Plug 'tpope/vim-sensible'
 
@@ -40,8 +40,8 @@ Plug 'robertbasic/vim-hugo-helper'
 
 Plug 'pearofducks/ansible-vim'
 Plug 'altercation/vim-colors-solarized'
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugins.vim'))
-  source /home/ngenetzky/.config/editor-vim//plugins.vim
+if filereadable(expand('~/.config/editor-vim/plugins.vim'))
+  source ~/.config/editor-vim/plugins.vim
 endif
 
 " Initialize plugin system
@@ -65,8 +65,8 @@ endtry
 
 let g:formatter_yapf_style = 'pep8'
 
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugin_settings.vim'))
-  source /home/ngenetzky/.config/editor-vim//plugin_settings.vim
+if filereadable(expand('~/.config/editor-vim/plugin_settings.vim'))
+  source ~/.config/editor-vim/plugin_settings.vim
 endif
 " plugin_settings
 "*******************************************************************************
@@ -193,8 +193,8 @@ set background=dark
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//vim_settings.vim'))
-  source /home/ngenetzky/.config/editor-vim/vim_settings.vim
+if filereadable(expand('~/.config/editor-vim/vim_settings.vim'))
+  source ~/.config/editor-vimvim_settings.vim
 endif
 " } vim_settings
 "*******************************************************************************
