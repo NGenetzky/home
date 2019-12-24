@@ -1,3 +1,5 @@
+# zmodload zsh/zprof # top of your .zshrc file
+
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -14,9 +16,18 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
+# https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+# 10ms for key sequences
+KEYTIMEOUT=1
+
+# compinit: Use modern completion system
 autoload -Uz compinit
-compinit
+# only check the cached .zcompdump only once a day
+# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -35,3 +46,13 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+source ~/.zplug/init.zsh
+
+# Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git",   from:oh-my-zsh
+
+# zprof # bottom of .zshrc
