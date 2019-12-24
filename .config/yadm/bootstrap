@@ -1,0 +1,17 @@
+#!/bin/bash
+
+################################################################################
+# vim {
+
+if command -v 'vim' >/dev/null 2>&1; then
+    if [ ! -f "${HOME}/.vim/autoload/plug.vim" ] ; then
+        curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
+          'https://raw.githubusercontent.com/junegunn/vim-plug/359ce90b9b37442974fd3ccd9279493d85efb3af/plug.vim'
+    fi
+
+  echo "Bootstraping Vim"
+  vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+fi
+
+# } vim
+################################################################################
