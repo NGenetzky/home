@@ -122,8 +122,11 @@ COMPLETION_WAITING_DOTS="false"
 ################################################################################
 # plugin settings
 
+ZSH_CUSTOM="${HOME}/.config/zsh/custom/"
+
 ENHANCD_FILTER='fzy'
 
+# https://denysdovhan.com/spaceship-prompt/docs/Options.html
 SPACESHIP_DIR_TRUNC=0
 SPACESHIP_TIME_SHOW=true
 
