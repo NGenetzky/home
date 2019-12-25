@@ -1,8 +1,38 @@
 #!/bin/bash
+#{{{ profiling tools
 # zmodload zsh/zprof # top of your .zshrc file
+# ref: git@gitlab.com:yramagicman/stow-dotfiles.git
+PROFILE_STARTUP=true
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zmodload zsh/zprof
+    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+    PS4=$'%D{%M%S%.} %N:%i> '
+    exec 3>&2 2>$HOME/startlog.$$
+    setopt xtrace prompt_subst
+fi
+#}}}
+
+################################################################################
+# compinit: Use modern completion system
+
+# compinit handled by zgen
+ZSH_COMPDUMP="${HOME}/cache/zcompdump"
+ZGEN_CUSTOM_COMPDUMP="${HOME}/cache/zcompdump"
+
+# autoload -Uz compinit
+# # only check the cached .zcompdump only once a day
+# # https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
+# for dump in ~/.zcompdump(N.mh+24); do
+#   compinit
+# done
+# compinit -C
+
+# compinit
+################################################################################
 
 ################################################################################
 # oh-my-zsh
+
 
 # ZSH_CUSTOM="${HOME}/.config/zsh/custom/"
 
@@ -104,24 +134,14 @@ unset _zgen_create_save
 # promptinit
 # prompt adam1
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# History
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.zsh_history
+# HISTFILE=~/.zsh_history
 
 # https://www.johnhawthorn.com/2012/09/vi-escape-delays/
 # 10ms for key sequences
 KEYTIMEOUT=1
-
-## compinit handled by zgen
-# # compinit: Use modern completion system
-# autoload -Uz compinit
-# # only check the cached .zcompdump only once a day
-# # https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
-# for dump in ~/.zcompdump(N.mh+24); do
-#   compinit
-# done
-# compinit -C
 
 setopt histignorealldups sharehistory
 
@@ -133,6 +153,7 @@ COMPLETION_WAITING_DOTS="false"
 # plugin settings
 
 ENHANCD_FILTER='fzy'
+ENHANCD_COMMAND=ecd; export ENHANCD_COMMAND
 
 # https://denysdovhan.com/spaceship-prompt/docs/Options.html
 SPACESHIP_DIR_TRUNC=0
@@ -146,6 +167,10 @@ SPACESHIP_TIME_SHOW=true
 # plugin settings
 ################################################################################
 
+if [ -f "${HOME}/.dircolors" ]; then
+  eval $(dircolors -b "${HOME}/.dircolors" )
+fi
+
 ################################################################################
 # zstyle
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -153,7 +178,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+# eval "$(dircolors -b)" # up above
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -168,4 +193,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # zstyle
 ################################################################################
 
-# zprof # bottom of .zshrc
+#{{{ end profiling script
+# ref: git@gitlab.com:yramagicman/stow-dotfiles.git
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    unsetopt xtrace
+    exec 2>&3 3>&-
+    zprof > ~/zshprofile$(date +'%s')
+fi
+#}}}
