@@ -1,6 +1,13 @@
 #!/bin/bash
-
 # zmodload zsh/zprof # top of your .zshrc file
+
+################################################################################
+# oh-my-zsh
+
+# ZSH_CUSTOM="${HOME}/.config/zsh/custom/"
+
+# oh-my-zsh
+################################################################################
 
 ################################################################################
 # zgen
@@ -30,7 +37,8 @@ _zgen_create_save(){
 
     # zgen load /path/to/super-secret-private-plugin
     
-    zgen load b4b4r07/enhancd
+    # A next-generation cd command with an interactive filter
+    # zgen load b4b4r07/enhancd
 
     # Add Fish-like autosuggestions to your ZSH
     # zgen load zsh-users/zsh-autosuggestions
@@ -39,11 +47,13 @@ _zgen_create_save(){
     zgen loadall <<EOPLUGINS
         supercrabtree/k
         zdharma/fast-syntax-highlighting
-        zsh-users/zsh-autosuggestions
         zsh-users/zsh-history-substring-search
         zsh-users/zsh-syntax-highlighting
 EOPLUGINS
     # ^ can't indent this EOPLUGINS
+   
+    # ZSH_CUSTOM="${HOME}/.config/zsh/custom/"
+    zgen load "${HOME}/.config/zsh/custom/"
 
     # completions
     zgen load zsh-users/zsh-completions src
@@ -121,8 +131,6 @@ COMPLETION_WAITING_DOTS="false"
 
 ################################################################################
 # plugin settings
-
-ZSH_CUSTOM="${HOME}/.config/zsh/custom/"
 
 ENHANCD_FILTER='fzy'
 
