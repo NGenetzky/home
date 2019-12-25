@@ -23,7 +23,7 @@
 # alias gd='git diff'
 
 # alias gst='git status'
-# alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
+alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 # alias gsts='git status -s'
 # alias gstsi='git status -s --ignored'
 
