@@ -3,15 +3,53 @@
 ################################################################################
 # vim {
 
-if command -v 'vim' >/dev/null 2>&1; then
-    if [ ! -f "${HOME}/.vim/autoload/plug.vim" ] ; then
-        curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
-          'https://raw.githubusercontent.com/junegunn/vim-plug/359ce90b9b37442974fd3ccd9279493d85efb3af/plug.vim'
+_VIM_PLUG_URL='https://raw.githubusercontent.com/junegunn/vim-plug/359ce90b9b37442974fd3ccd9279493d85efb3af/plug.vim'
+_vim() {
+    if command -v 'vim' >/dev/null 2>&1; then
+        if [ ! -f "${HOME}/.vim/autoload/plug.vim" ] ; then
+            curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
+                "${_VIM_PLUG_URL}"
+        fi
+        echo "Bootstraping Vim"
+        vim '+PlugClean!' '+PlugUpdate' '+qall'
     fi
-
-  echo "Bootstraping Vim"
-  vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-fi
+}
 
 # } vim
 ################################################################################
+
+################################################################################
+# zsh {
+
+_zgen() {
+    [ ! -d "${HOME}/.zgen" ] || return 0
+    echo "Bootstraping zgen"
+    git clone --depth=1 "https://github.com/tarjoilija/zgen.git" "${HOME}/.zgen"
+}
+
+_zplug() {
+    [ ! -d "${HOME}/.zplug" ] || return 0
+    echo "Bootstraping Zplug"
+    git clone --depth=1 "https://github.com/zplug/zplug.git" "${HOME}/.zplug"
+}
+
+_ohmyzsh() {
+    [ ! -d "${HOME}/.oh-my-zsh" ] || return 0
+    echo "Bootstraping oh-my-zsh"
+    git clone --depth=1 "https://github.com/ohmyzsh/ohmyzsh.git" "${HOME}/.oh-my-zsh"
+}
+
+_zsh() {
+    command -v 'zsh' >/dev/null 2>&1 || return 0
+    _zgen
+    # _zplug
+    # _ohmyzsh
+}
+
+# } zsh
+################################################################################
+
+set -eux
+_vim
+_zsh
+
