@@ -17,6 +17,10 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+#
+# PATH
+#
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -27,4 +31,21 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-which vim > '/dev/null' && export EDITOR="vim"
+#
+# Tools
+#
+
+if command -v vim > '/dev/null' ; then
+    export EDITOR='vim'
+    export VISUAL='vim'
+    export PAGER='less'
+fi
+
+#
+# Language
+#
+
+if [ -z "$LANG" ]; then
+  export LANG='en_US.UTF-8'
+fi
+
