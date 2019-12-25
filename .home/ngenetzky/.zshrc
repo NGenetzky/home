@@ -2,7 +2,7 @@
 #{{{ profiling tools
 # zmodload zsh/zprof # top of your .zshrc file
 # ref: git@gitlab.com:yramagicman/stow-dotfiles.git
-PROFILE_STARTUP=true
+PROFILE_STARTUP=false
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zmodload zsh/zprof
     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
@@ -54,16 +54,17 @@ _zgen_create_save(){
     ## Load oh-my-zsh plugins
     # zgen oh-my-zsh plugins/aws
     # zgen oh-my-zsh plugins/chruby
-    zgen oh-my-zsh plugins/colored-man-pages
-    zgen oh-my-zsh plugins/command-not-found
-    zgen oh-my-zsh plugins/git
     # zgen oh-my-zsh plugins/github
     # zgen oh-my-zsh plugins/pip
     # zgen oh-my-zsh plugins/python
     # zgen oh-my-zsh plugins/rsync
     # zgen oh-my-zsh plugins/screen
-    zgen oh-my-zsh plugins/sudo
     # zgen oh-my-zsh plugins/vagrant
+    zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/command-not-found
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/sudo
+    zgen oh-my-zsh plugins/tmux
 
     # zgen load /path/to/super-secret-private-plugin
     
@@ -135,15 +136,24 @@ unset _zgen_create_save
 # prompt adam1
 
 # History
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 # HISTFILE=~/.zsh_history
 
 # https://www.johnhawthorn.com/2012/09/vi-escape-delays/
 # 10ms for key sequences
 KEYTIMEOUT=1
 
-setopt histignorealldups sharehistory
+# setopt histignorealldups
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances of the shell
+# setopt auto_cd # cd by typing directory name if it's not a command
+setopt correct_all # autocorrect commands
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
 
 # other settings
 
