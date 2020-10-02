@@ -1,0 +1,3 @@
+[submodule ".local/src/github.com.ypid.dotfiles"]
+	path = .local/src/github.com.ypid.dotfiles
+	url = https://github.com/ypid/dotfiles.git
