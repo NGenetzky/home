@@ -1,0 +1,1 @@
+../../.local/src/github.com.ypid.dotfiles/bash_profile
