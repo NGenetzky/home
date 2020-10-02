@@ -1,0 +1,1 @@
+.home/ypid/.bash_profile
