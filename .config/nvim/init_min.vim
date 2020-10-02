@@ -1,0 +1,1 @@
+../../.home/ypid/.config/nvim/init_min.vim

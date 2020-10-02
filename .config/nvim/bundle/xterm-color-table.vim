@@ -1,0 +1,1 @@
+../../../.home/ypid/.config/nvim/bundle/xterm-color-table.vim
