@@ -1,0 +1,3 @@
+[submodule ".local/src/vcstool"]
+	path = .local/src/vcstool
+	url = git@github.com:dirk-thomas/vcstool.git
