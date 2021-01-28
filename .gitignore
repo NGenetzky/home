@@ -1,0 +1,31 @@
+# ~/.gitignore
+
+################################################################################
+# gitignore_home_dirs_0
+
+/.F5Networks/
+/.bash_it/
+/.mozilla/
+/.tmux/plugins/
+/.vim/bundle/
+/.vim/spf13-vim/
+
+################################################################################
+# gitignore_home_dirs_1
+
+/.cache/
+/.config/
+/.local/bin/
+/.local/share/
+/.local/src/
+
+################################################################################
+# gitignore_home_files_0
+
+/.ICEauthority
+/.bash_history
+/.sudo_as_admin_successful
+/.vim/.netrwhist
+/.vim/autoload/plug.vim
+/.viminfo
+
