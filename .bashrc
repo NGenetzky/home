@@ -1,1 +1,1 @@
-.home/user/.bashrc
+.home/.bashrc

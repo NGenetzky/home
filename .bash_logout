@@ -1,1 +1,1 @@
-.home/user/.bash_logout
+.home/.bash_logout

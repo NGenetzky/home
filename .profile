@@ -1,1 +1,1 @@
-.home/user/.profile
+.home/.profile

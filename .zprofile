@@ -1,1 +1,1 @@
-.home/user/.zprofile
+.home/.zprofile

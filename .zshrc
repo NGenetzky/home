@@ -1,1 +1,1 @@
-.home/user/.zshrc
+.home/.zshrc

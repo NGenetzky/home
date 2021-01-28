@@ -1,1 +1,1 @@
-.home/user/.bash_profile
+.home/.bash_profile
