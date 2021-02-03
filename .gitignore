@@ -6,9 +6,17 @@
 /.F5Networks/
 /.bash_it/
 /.mozilla/
+/.oh-my-bash/
+/.oh-my-zsh/
+/.pylint.d/
 /.tmux/plugins/
 /.vim/bundle/
 /.vim/spf13-vim/
+/.vscode-server/bin/
+/.vscode-server/data/
+/.vscode-server/extensions/
+/.vscode-server/extensionsCache/
+
 
 ################################################################################
 # gitignore_home_dirs_1
@@ -24,8 +32,13 @@
 
 /.ICEauthority
 /.bash_history
+/.bash_history
+/.osh-update
+/.sdirs
+/.ssh/known_hosts
 /.sudo_as_admin_successful
 /.vim/.netrwhist
 /.vim/autoload/plug.vim
+/.viminfo
 /.viminfo
 
