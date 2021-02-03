@@ -1,3 +1,4 @@
+!.gitignore
 vim/undo/
 vim/info
 ctrlp/mru/cache.txt
