@@ -141,3 +141,5 @@ __bash_prompt() {
 __bash_prompt
 export NVS_HOME="$HOME/.nvs"
 [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
+
+[ -s "$HOME/.shellrc" ] && . "$HOME/.shellrc"
