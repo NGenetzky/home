@@ -1,0 +1,3 @@
+[submodule ".config/dotfiles"]
+	path = .local/home/ypid
+	url = https://github.com/ypid/dotfiles.git
