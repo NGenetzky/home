@@ -42,3 +42,12 @@
 /.viminfo
 /.viminfo
 
+################################################################################
+# gitignore_home_files_1
+#
+
+.lesshst
+.zsh_history
+.xsession-errors
+.Xauthority
+.gnupg
