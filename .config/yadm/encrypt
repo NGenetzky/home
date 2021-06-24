@@ -1,0 +1,8 @@
+
+# ./.config/
+
+.config/smbcredentials/*
+
+# Other
+
+.wgetrc
