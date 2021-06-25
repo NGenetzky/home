@@ -1,48 +1,46 @@
-all:
-  children:
-    debops_hosts_alll:
-      children:
-        public_ngenetzky_staging_debops:
+public_ngenetzky_ansible_local:
+  hosts:
+    localhost:
+  vars:
+    ansible_connection: local
+    ansible_python_interpreter: '{{ansible_playbook_python}}'
+    ansible_ssh_host: localhost
 
+public_ngenetzky_staging_debops:
+  children:
     public_ngenetzky_ansible_local:
-      hosts:
-        localhost:
-      vars:
-        ansible_connection: local
-        ansible_python_interpreter: '{{ansible_playbook_python}}'
-        ansible_ssh_host: localhost
+  vars:
+    dhparam__deploy_state: absent
+    dhparam__generate_cron: false
+    dhparam__generate_init: false
+    ferm__enabled: false
+    ferm__iptables_backend_enabled: false
+    journald__fss_enabled: false
+    journald__fss_verify_key: null
+    ldap__enabled: false
+    machine__etc_issue_state: absent
+    nullmailer__enabled: false
+    pki_acme: false
+    pki_ca_domain: ''
+    pki_ca_organization: ''
+    pki_default_domain: ''
+    pki_default_realms: []
+    pki_enabled: false
+    pki_internal: false
+    pki_scheduler: false
+    root_account__enabled: false
+    root_account__generate_ssh_key: false
+    root_account__password: '!'
+    sshd__optional_packages: []
+    system_users__default_accounts: []
+    system_users__self: false
+    users__acl_enabled: false
+    users__dotfiles_enabled: false
+    users__enabled: false
+    yadm__base_packages: []
+    yadm__default_dotfiles: []
+    yadm__dotfiles_enabled: false
+
+debops_all_hosts:
+  children:
     public_ngenetzky_staging_debops:
-      children:
-        public_ngenetzky_ansible_local:
-      vars:
-        dhparam__deploy_state: absent
-        dhparam__generate_cron: false
-        dhparam__generate_init: false
-        ferm__enabled: false
-        ferm__iptables_backend_enabled: false
-        journald__fss_enabled: false
-        journald__fss_verify_key: null
-        ldap__enabled: false
-        machine__etc_issue_state: absent
-        nullmailer__enabled: false
-        pki_acme: false
-        pki_ca_domain: ''
-        pki_ca_organization: ''
-        pki_default_domain: ''
-        pki_default_realms: []
-        pki_enabled: false
-        pki_internal: false
-        pki_scheduler: false
-        root_account__enabled: false
-        root_account__generate_ssh_key: false
-        root_account__password: '!'
-        sshd__optional_packages: []
-        system_users__default_accounts: []
-        system_users__self: false
-        users__acl_enabled: false
-        users__dotfiles_enabled: false
-        users__enabled: false
-        yadm__base_packages: []
-        yadm__default_dotfiles: []
-        yadm__dotfiles_enabled: false
-    ungrouped: {}
