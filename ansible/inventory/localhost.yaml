@@ -1,5 +1,9 @@
 all:
   children:
+    debops_hosts_alll:
+      children:
+        public_ngenetzky_staging_debops:
+
     public_ngenetzky_ansible_local:
       hosts:
         localhost:
@@ -8,6 +12,8 @@ all:
         ansible_python_interpreter: '{{ansible_playbook_python}}'
         ansible_ssh_host: localhost
     public_ngenetzky_staging_debops:
+      children:
+        public_ngenetzky_ansible_local:
       vars:
         dhparam__deploy_state: absent
         dhparam__generate_cron: false
