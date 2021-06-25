@@ -20,6 +20,7 @@ public_ngenetzky_staging_debops:
     ldap__enabled: false
     machine__etc_issue_state: absent
     nullmailer__enabled: false
+    netbase__hostname_config_enabled: False
     pki_acme: false
     pki_ca_domain: ''
     pki_ca_organization: ''
