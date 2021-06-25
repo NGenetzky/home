@@ -36,7 +36,7 @@ debops_install_via_pip_and_apt(){
         sudo \
         tree \
         && pip3 install \
-            debops[ansible]==2.2.0 \
+            debops[ansible]==2.2.2 \
         && echo "Cleaning up cache directories..." \
         && sudo rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /root/.cache/*
 }
