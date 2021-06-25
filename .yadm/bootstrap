@@ -1,23 +1,26 @@
 #!/bin/bash
 
+sudo_maybe()
+{
+    if [ "$(id -u)" -ne 0 ]; then
+        sudo "$@"
+    else
+        "$@"
+    fi
+}
+
 ssh_import_id_and_start_ssh(){
     _SSH_IMPORT_ID_USER='gh:ngenetzky'
     SSH_IMPORT_ID_USER="${SSH_IMPORT_ID_USER-${_SSH_IMPORT_ID_USER}}"
 
-    if command -v sudo > /dev/null ; then
-        sudo apt update && sudo apt install -y ssh-import-id ssh
-        ssh-import-id gh:ngenetzky
-        sudo service ssh start
-    else
-        apt update && apt install --yes ssh-import-id ssh
-        ssh-import-id gh:ngenetzky
-        service ssh start
-    fi
+    sudo_maybe apt update && sudo_maybe apt install -y ssh-import-id ssh
+    ssh-import-id gh:ngenetzky
+    sudo_maybe service ssh start
 }
 
 debops_install_via_pip_and_apt(){
-    sudo apt-get -q update \
-        && DEBIAN_FRONTEND=noninteractive sudo apt-get \
+    sudo_maybe apt-get -q update \
+        && DEBIAN_FRONTEND=noninteractive sudo_maybe apt-get \
         --no-install-recommends -yq install \
         iproute2 \
         iputils-ping \
@@ -38,7 +41,7 @@ debops_install_via_pip_and_apt(){
         && pip3 install \
             debops[ansible]==2.2.2 \
         && echo "Cleaning up cache directories..." \
-        && sudo rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /root/.cache/*
+        && sudo_maybe rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /root/.cache/*
 }
 
 set -eu
