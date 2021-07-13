@@ -54,7 +54,6 @@ endif
 " plugins
 "*******************************************************************************
 
-
 """ plugin_settings
 "*******************************************************************************
 
@@ -71,6 +70,7 @@ endtry
 
 let g:formatter_yapf_style = 'pep8'
 
+<<<<<<< HEAD
 if filereadable(expand('~/.config/editor-vim/plugin_settings.vim'))
   source ~/.config/editor-vim/plugin_settings.vim
 endif
