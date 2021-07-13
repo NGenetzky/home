@@ -10,7 +10,7 @@ if filereadable(expand('~/.vim/autoload/plug.vim'))
     " Specify a directory for plugins
     " - For Neovim: ~/.local/share/nvim/plugged
     " - Avoid using standard Vim directory names like 'plugin'
-    call plug#begin(expand('~/.local/share/vim-plug/plugged')
+    call plug#begin(expand('~/.local/share/vim-plug/plugged'))
 
     Plug 'tpope/vim-sensible'
 
