@@ -1,3 +1,7 @@
 [user]
-	email = Nathan@Genetzky.us
+	email = nathan@genetzky.us
 	name = Nathan Genetzky
+[push]
+	default = current
+[color]
+	ui = auto
