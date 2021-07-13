@@ -1,16 +1,16 @@
-" vimrc - Generated from [ngenetzky.editor-vim](https://github.com/NGenetzky/ansible-role-editor-vim)
+
+" ~/.vimrc in [home](https://github.com/ngenetzky/home/)
 " Maintainer:   Nathan Genetzky
-" Version:      0.1
-" TODO Fix hardcoded paths
+" Version:      1.0
 
 """ plugin manager
 "*******************************************************************************
 
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugin_settings.vim'))
+if filereadable(expand('~/.vim/autoload/plug.vim'))
     " Specify a directory for plugins
     " - For Neovim: ~/.local/share/nvim/plugged
     " - Avoid using standard Vim directory names like 'plugin'
-    call plug#begin('/home/ngenetzky/.local/share/editor-vim//plugged')
+    call plug#begin(expand('~/.local/share/vim-plug/plugged')
 
     Plug 'tpope/vim-sensible'
 
@@ -43,8 +43,8 @@ if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugin_settings.vim'
 
     Plug 'pearofducks/ansible-vim'
     Plug 'altercation/vim-colors-solarized'
-    if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugins.vim'))
-      source /home/ngenetzky/.config/editor-vim//plugins.vim
+    if filereadable(expand('~/.config/editor-vim/plugins.vim'))
+      source ~/.config/editor-vim/plugins.vim
     endif
 
     " Initialize plugin system
@@ -71,8 +71,8 @@ endtry
 
 let g:formatter_yapf_style = 'pep8'
 
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugin_settings.vim'))
-  source /home/ngenetzky/.config/editor-vim//plugin_settings.vim
+if filereadable(expand('~/.config/editor-vim/plugin_settings.vim'))
+  source ~/.config/editor-vim/plugin_settings.vim
 endif
 " plugin_settings
 "*******************************************************************************
@@ -196,8 +196,11 @@ set wildmode=longest:full,list:full
 
 set background=dark
 
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//vim_settings.vim'))
-  source /home/ngenetzky/.config/editor-vim/vim_settings.vim
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+if filereadable(expand('~/.config/editor-vim/vim_settings.vim'))
+  source ~/.config/editor-vimvim_settings.vim
 endif
 " } vim_settings
 "*******************************************************************************
