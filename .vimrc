@@ -1,53 +1,59 @@
 " vimrc - Generated from [ngenetzky.editor-vim](https://github.com/NGenetzky/ansible-role-editor-vim)
 " Maintainer:   Nathan Genetzky
 " Version:      0.1
+" TODO Fix hardcoded paths
 
 """ plugin manager
 "*******************************************************************************
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('/home/ngenetzky/.local/share/editor-vim//plugged')
 
-Plug 'tpope/vim-sensible'
+if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugin_settings.vim'))
+    " Specify a directory for plugins
+    " - For Neovim: ~/.local/share/nvim/plugged
+    " - Avoid using standard Vim directory names like 'plugin'
+    call plug#begin('/home/ngenetzky/.local/share/editor-vim//plugged')
 
-Plug 'vim-airline/vim-airline-themes'
-Plug 'kergoth/vim-bitbake'
-"fugitive.vim: a Git wrapper so awesome, it should be illegal.
-Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-sensible'
 
-" comment stuff out
-Plug 'tpope/vim-commentary'
-" speeddating.vim: use CTRL-A/CTRL-X to increment dates, times, and more
-Plug 'tpope/vim-speeddating'
-" quoting/parenthesizing made simple
-Plug 'tpope/vim-surround'
-" enable repeating supported plugin maps with "."
-Plug 'tpope/vim-repeat'
-" easily search for, substitute, and abbreviate multiple variants of a word
-Plug 'tpope/vim-abolish'
-" Vim Markdown runtime files
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-sensible'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'kergoth/vim-bitbake'
+    "fugitive.vim: a Git wrapper so awesome, it should be illegal.
+    Plug 'tpope/vim-fugitive'
 
-" Vim syntax for TOML
-Plug 'cespare/vim-toml'
+    " comment stuff out
+    Plug 'tpope/vim-commentary'
+    " speeddating.vim: use CTRL-A/CTRL-X to increment dates, times, and more
+    Plug 'tpope/vim-speeddating'
+    " quoting/parenthesizing made simple
+    Plug 'tpope/vim-surround'
+    " enable repeating supported plugin maps with "."
+    Plug 'tpope/vim-repeat'
+    " easily search for, substitute, and abbreviate multiple variants of a word
+    Plug 'tpope/vim-abolish'
+    " Vim Markdown runtime files
+    Plug 'tpope/vim-markdown'
+    Plug 'tpope/vim-obsession'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-sensible'
 
-" A small Vim plugin with a set of helpers for Hugo https://gohugo.io
-Plug 'robertbasic/vim-hugo-helper'
+    " Vim syntax for TOML
+    Plug 'cespare/vim-toml'
 
-Plug 'pearofducks/ansible-vim'
-Plug 'altercation/vim-colors-solarized'
-if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugins.vim'))
-  source /home/ngenetzky/.config/editor-vim//plugins.vim
+    " A small Vim plugin with a set of helpers for Hugo https://gohugo.io
+    Plug 'robertbasic/vim-hugo-helper'
+
+    Plug 'pearofducks/ansible-vim'
+    Plug 'altercation/vim-colors-solarized'
+    if filereadable(expand('/home/ngenetzky/.config/editor-vim//plugins.vim'))
+      source /home/ngenetzky/.config/editor-vim//plugins.vim
+    endif
+
+    " Initialize plugin system
+    call plug#end()
 endif
 
-" Initialize plugin system
-call plug#end()
 " plugins
 "*******************************************************************************
+
 
 """ plugin_settings
 "*******************************************************************************
@@ -190,69 +196,13 @@ set wildmode=longest:full,list:full
 
 set background=dark
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-
 if filereadable(expand('/home/ngenetzky/.config/editor-vim//vim_settings.vim'))
   source /home/ngenetzky/.config/editor-vim/vim_settings.vim
 endif
 " } vim_settings
 "*******************************************************************************
 
-if exists('veonim')
-
-" built-in plugin manager
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-surround'
-
-" extensions for web dev
-let g:vscode_extensions = [
-  \'vscode.typescript-language-features',
-  \'vscode.css-language-features',
-  \'vscode.html-language-features',
-\]
-
-" multiple nvim instances
-nno <silent> <c-t>c :Veonim vim-create<cr>
-nno <silent> <c-g> :Veonim vim-switch<cr>
-nno <silent> <c-t>, :Veonim vim-rename<cr>
-
-" workspace functions
-nno <silent> ,f :Veonim files<cr>
-nno <silent> ,e :Veonim explorer<cr>
-nno <silent> ,b :Veonim buffers<cr>
-nno <silent> ,d :Veonim change-dir<cr>
-"or with a starting dir: nno <silent> ,d :Veonim change-dir ~/proj<cr>
-
-" searching text
-nno <silent> <space>fw :Veonim grep-word<cr>
-vno <silent> <space>fw :Veonim grep-selection<cr>
-nno <silent> <space>fa :Veonim grep<cr>
-nno <silent> <space>ff :Veonim grep-resume<cr>
-nno <silent> <space>fb :Veonim buffer-search<cr>
-
-" language features
-nno <silent> sr :Veonim rename<cr>
-nno <silent> sd :Veonim definition<cr>
-nno <silent> si :Veonim implementation<cr>
-nno <silent> st :Veonim type-definition<cr>
-nno <silent> sf :Veonim references<cr>
-nno <silent> sh :Veonim hover<cr>
-nno <silent> sl :Veonim symbols<cr>
-nno <silent> so :Veonim workspace-symbols<cr>
-nno <silent> sq :Veonim code-action<cr>
-nno <silent> sk :Veonim highlight<cr>
-nno <silent> sK :Veonim highlight-clear<cr>
-nno <silent> ,n :Veonim next-usage<cr>
-nno <silent> ,p :Veonim prev-usage<cr>
-nno <silent> sp :Veonim show-problem<cr>
-nno <silent> <c-n> :Veonim next-problem<cr>
-nno <silent> <c-p> :Veonim prev-problem<cr>
-
-endif
-
 """ modelines
 " https://vi.stackexchange.com/a/3820
 " vim:fdm=expr:fdl=0
 " vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
-"
