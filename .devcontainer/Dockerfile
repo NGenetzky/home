@@ -12,8 +12,9 @@ ARG FROM_IMAGE="jgoerzen/debian-base-${DEBASE_VARIANT}:${VARIANT}"
 FROM ${FROM_IMAGE}
 
 ARG USERNAME=user
-COPY ./.config/yadm/bootstrap /usr/local/bin/ngenetzky_yadm_bootstrap
-RUN USERNAME="${USERNAME}" /usr/local/bin/ngenetzky_yadm_bootstrap
+COPY ./.devcontainer/ /.devcontainer/
+
+RUN USERNAME="${USERNAME}" /.devcontainer/ngenetzky_devcontainer_debian.bash
 
 ENTRYPOINT ["/usr/local/bin/boot-debian-base"]
 CMD [ "sleep", "infinity" ]
