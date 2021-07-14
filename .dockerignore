@@ -1,0 +1,5 @@
+# Very precise
+*
+
+# Should be able to bootstrap with a single file.
+!.config/yadm/bootstrap
