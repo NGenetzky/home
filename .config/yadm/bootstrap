@@ -154,6 +154,11 @@ _bootstrap_root(){
     apt_get_install_1
     useradd_user
     _bootstrap_yadm
+
+    # TODO
+    #update-alternatives --set editor "$(which nvim)"
+    # TODO
+    #locale.gen
 }
 
 _bootstrap(){
