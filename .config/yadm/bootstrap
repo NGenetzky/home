@@ -127,6 +127,15 @@ _bootstrap_vim(){
     vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 }
 
+_bootstrap_python3(){
+    # TODO: Require root
+
+    # [python__base_packages3](https://docs.debops.org/en/stable-2.2/ansible/roles/python/defaults/main.html#python-3-management)
+    sudo apt-get -y install \
+        'python3-httplib2' 'python3-pip' 'python3-setuptools' 'python3-pycurl' \
+        'python3-future' 'python3-virtualenv' 'python3-wheel' 'virtualenv'
+}
+
 _bootstrap_nvim(){
     nvim_dir="${HOME}/.config/nvim/"
     if [ ! -f "${HOME}/.config/nvim/Makefile" ] ; then
@@ -168,6 +177,9 @@ _bootstrap_root(){
     apt_get_update_maybe
     apt_get_install_0
     apt_get_install_1
+
+    _bootstrap_python3
+
     useradd_user
     # _bootstrap_yadm
 
