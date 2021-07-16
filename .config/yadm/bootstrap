@@ -127,6 +127,21 @@ _bootstrap_vim(){
     vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 }
 
+_bootstrap_nvim(){
+    nvim_dir="${HOME}/.config/nvim/"
+    if [ ! -f "${HOME}/.config/nvim/Makefile" ] ; then
+        return 1
+    fi
+    cd "${nvim_dir}"
+
+    pip3 install --user pynvim
+    pip3 install --user PyYAML
+    pip3 install --user vim-vint pycodestyle pyflakes flake8
+
+    make test
+    make
+}
+
 _bootstrap_yadm(){
     if [ -d "$HOME/.local/share/yadm/repo.git" ] ; then
         return 0
@@ -146,6 +161,7 @@ _bootstrap_user(){
     _bootstrap_mkdir
     # _bootstrap_tpm
     # _bootstrap_vim
+    _bootstrap_nvim
 }
 
 _bootstrap_root(){
