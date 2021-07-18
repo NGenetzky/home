@@ -1,1 +1,0 @@
-/root/.config/dotfiles/asdf/README.md

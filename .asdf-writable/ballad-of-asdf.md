@@ -1,1 +1,0 @@
-/root/.config/dotfiles/asdf/ballad-of-asdf.md
