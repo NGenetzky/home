@@ -50,9 +50,25 @@ public_ngenetzky_staging_debops:
     users__acl_enabled: false
     users__dotfiles_enabled: false
     users__enabled: false
-    yadm__base_packages: []
-    yadm__default_dotfiles: []
-    yadm__dotfiles_enabled: false
+    # yadm__base_packages: []
+    # yadm__default_dotfiles: []
+    # yadm__dotfiles_enabled: false
+
+public_ngenetzky_defaults_debops_yadm:
+  # children:
+  #   public_ngenetzky_ansible_local:
+  hosts:
+    localhost:
+  vars:
+    yadm__dotfiles_enabled: True
+    yadm__dotfiles_path: '{{
+      (ansible_local.fhs.src | d("/usr/local/src"))
+      + "/yadm" + "/github.com/ngenetzky/home.git"
+      if yadm__dotfiles_enabled|bool else ""
+    }}'
+    yadm__default_dotfiles:
+    - name: 'ngenetzky'
+      git: 'https://github.com/ngenetzky/home'
 
 debops_all_hosts:
   children:
@@ -63,6 +79,8 @@ debops_all_hosts:
     # debops_service_apt_install: # debops service/apt_install
     # debops_service_controller: # debops service/controller
     # debops_service_resources # debops service/resources
+    # debops_service_yadm # debops service/yadm
+
   vars:
     apt_install__packages:
       - name:
@@ -80,6 +98,7 @@ debops_all_hosts:
       - repo: 'https://github.com/ypid/dotfiles.git'
         owner: 'root'
         dest: '/usr/local/src/github.com.ypid.dotfiles/'
+        version: 'f5a97202f85124e70abe2e2dbfbdd3c5da5b4fbe'
 
     # List of shell commands which should be executed on all hosts in the Ansible inventory.
     # https://docs.debops.org/en/master/ansible/roles/resources/defaults-detailed.html#resources-ref-commands
