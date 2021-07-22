@@ -1,3 +1,5 @@
+---
+
 public_ngenetzky_ansible_local:
   hosts:
     localhost:
@@ -60,6 +62,7 @@ debops_all_hosts:
     #
     # debops_service_apt_install: # debops service/apt_install
     # debops_service_controller: # debops service/controller
+    # debops_service_resources # debops service/resources
   vars:
     apt_install__packages:
       - name:
@@ -67,3 +70,24 @@ debops_all_hosts:
           - "shellcheck"
           - "tmux"
           - "vim-nox"
+
+    # resources__src: '{{ inventory_dir | realpath + "/../resources/" }}'
+
+    # Manage git repositories on all hosts in the Ansible inventory.
+    # https://docs.debops.org/en/master/ansible/roles/resources/defaults-detailed.html#resources-repositories
+    resources__repositories:
+      # - repo: 'ssh://git@git.example.org:29418/namespace/repository.git'
+      - repo: 'https://github.com/ypid/dotfiles.git'
+        owner: 'root'
+        dest: '/usr/local/src/github.com.ypid.dotfiles/'
+
+    # List of shell commands which should be executed on all hosts in the Ansible inventory.
+    # https://docs.debops.org/en/master/ansible/roles/resources/defaults-detailed.html#resources-ref-commands
+    resources__commands:
+      - name: '0_resources__commands'
+        # executable: '/bin/bash' # default='/bin/bash'
+        no_log: False
+        script: |
+          date --iso-8601=s >> /tmp/.ansible_debops_executed.log
+          cd /usr/local/src/github.com.ypid.dotfiles/
+          ./get
