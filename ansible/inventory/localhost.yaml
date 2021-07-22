@@ -6,6 +6,12 @@ public_ngenetzky_ansible_local:
     ansible_python_interpreter: '{{ansible_playbook_python}}'
     ansible_ssh_host: localhost
 
+debops_service_controller:
+  children:
+    public_ngenetzky_ansible_local:
+  vars:
+    controller__install_systemwide: False # default=True
+
 public_ngenetzky_staging_debops:
   children:
     public_ngenetzky_ansible_local:
@@ -47,4 +53,13 @@ public_ngenetzky_staging_debops:
 
 debops_all_hosts:
   children:
+    #debops_service_apt_install: # debops service/apt_install
+    #debops_service_controller: # debops service/controller
     public_ngenetzky_staging_debops:
+  vars:
+    apt_install__packages:
+      - name:
+          - "bash"
+          - "shellcheck"
+          - "tmux"
+          - "vim-nox"
