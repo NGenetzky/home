@@ -44,6 +44,7 @@ public_ngenetzky_staging_debops:
     sshd__optional_packages: []
     system_users__default_accounts: []
     system_users__self: false
+    system_users__self_name: 'root' # Must be set to avoid issue with 'Gather local Ansible user details'
     users__acl_enabled: false
     users__dotfiles_enabled: false
     users__enabled: false
@@ -53,9 +54,12 @@ public_ngenetzky_staging_debops:
 
 debops_all_hosts:
   children:
-    #debops_service_apt_install: # debops service/apt_install
-    #debops_service_controller: # debops service/controller
     public_ngenetzky_staging_debops:
+    # debops_service_bootstrap: # debops bootstrap
+    # debops_service_core: # debops common
+    #
+    # debops_service_apt_install: # debops service/apt_install
+    # debops_service_controller: # debops service/controller
   vars:
     apt_install__packages:
       - name:
