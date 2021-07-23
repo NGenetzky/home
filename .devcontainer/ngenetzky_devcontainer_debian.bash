@@ -6,7 +6,7 @@
 apt_get_update_maybe() {
     # shellcheck disable=SC2012
     if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
-        apt-get update
+        apt-get -q update
     fi
 }
 
@@ -49,19 +49,26 @@ apt_get_install_0() {
         man-db \
         strace"
 
-    apt-get -y install \
-        --no-install-recommends ${PACKAGE_LIST}
+    apt-get -yq install --no-install-recommends \
+        ${PACKAGE_LIST}
 }
 
 apt_get_install_1(){
-    # From vscode common-debian
-    PACKAGE_LIST="yadm \
-        vim \
+    PACKAGE_LIST="\
+        git \
         tmux \
+        vim-nox \
+        yadm \
         "
 
-    apt-get -y install \
-        --no-install-recommends ${PACKAGE_LIST}
+    apt-get -yq install --no-install-recommends \
+        ${PACKAGE_LIST}
+}
+
+apt_get_clean(){
+    apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 }
 
 useradd_user(){
@@ -97,79 +104,41 @@ useradd_user(){
 
 }
 
-################################################################################
-
-_bootstrap_mkdir(){
-    mkdir -p \
-        "${HOME}/.local/bin/" \
-        "${HOME}/.local/home/" \
-        "${HOME}/.local/share/" \
-        "${HOME}/.local/src/" \
-        "${HOME}/.local/var/" \
-        "${HOME}/bin/"
-}
-
-_bootstrap_tpm(){
-    S_TPM="${HOME}/.tmux/plugins/tpm"
-    [ -d "${S_TPM}" ] && return 0
-    git clone --depth=1 'https://github.com/tmux-plugins/tpm.git' "${S_TPM}"
-    "${S_TPM}/bin/install_plugins"
-}
-
-_bootstrap_vim(){
-    if ! command -v 'vim' >/dev/null 2>&1; then
-        return 0
-    fi
-    if [ ! -f "${HOME}/.vim/autoload/plug.vim" ] ; then
-        curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
-          'https://raw.githubusercontent.com/junegunn/vim-plug/359ce90b9b37442974fd3ccd9279493d85efb3af/plug.vim'
-    fi
-    vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-}
-
-_bootstrap_yadm(){
-    if [ -d "$HOME/.local/share/yadm/repo.git" ] ; then
-        return 0
-    fi
-    if [ -d "$HOME/.yadm/repo.git" ] ; then
+yadm_clone_src(){
+    if [ -d "/usr/local/share/github.com.genetzky.home.git" ] ; then
         return 0
     fi
 
-    yadm clone 'https://home.genetzky.us'
-    yadm remote set-url origin --push none
+    git clone --bare \
+        'https://home.genetzky.us' \
+        '/usr/local/share/us.genetzky.home.git'
 }
 
-################################################################################
-
-_bootstrap_user(){
-    _bootstrap_yadm
-    _bootstrap_mkdir
-    _bootstrap_tpm
-    _bootstrap_vim
-}
-
-_bootstrap_root(){
+ngenetzky_devcontainer_debian(){
     apt_get_update_maybe
-    apt_get_install_0
+    # apt_get_install_0
     apt_get_install_1
-    useradd_user
-    _bootstrap_yadm
+
+    yadm_clone_src
 
     # TODO
     #update-alternatives --set editor "$(which nvim)"
     # TODO
     #locale.gen
-}
 
-_bootstrap(){
-    if [ "$(id -u)" -ne 0 ]; then
-        _bootstrap_user
+    if [ -z "${USERNAME}" ]; then
+        yadm clone '/usr/local/share/us.genetzky.home.git'
     else
-        _bootstrap_root
+        useradd_user
+        # sudo -u "${USERNAME}"
+        su "${USERNAME}" \
+            -- \
+            yadm clone '/usr/local/share/us.genetzky.home.git'
     fi
-}
 
-################################################################################
+    apt_get_clean
+}
 
 set -eu
-_bootstrap
+set -x
+ngenetzky_devcontainer_debian
