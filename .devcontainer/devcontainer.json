@@ -52,5 +52,5 @@
 	// "postCreateCommand": "ansible --version",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "user", // VSC_CUSTOM_USER
+	"remoteUser": "user", // VSC_CUSTOM_USER
 }
