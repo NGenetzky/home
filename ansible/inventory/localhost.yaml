@@ -18,6 +18,8 @@ public_ngenetzky_staging_debops:
     journald__fss_enabled: false
     journald__fss_verify_key: null
     ldap__enabled: false
+    ldap__device_ip_addresses: ''
+    ldap__device_mac_addresses: ''
     machine__etc_issue_state: absent
     nullmailer__enabled: false
     netbase__hostname_config_enabled: False
