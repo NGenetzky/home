@@ -4,6 +4,15 @@
 .config/dconf/user
 .config/smbcredentials/*
 
+
+# .ssh/
+.ssh/*.key
+.ssh/*id_dsa
+.ssh/*id_ecdsa
+.ssh/*id_ed25519
+.ssh/*id_rsa
+
+
 # Other
 
 .wgetrc
