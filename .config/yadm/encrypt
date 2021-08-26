@@ -11,10 +11,11 @@
 .ssh/*id_ed25519
 .ssh/*id_rsa
 
-
 # debops in ~/
 ansible/secret/*
 
+# Terraform
+.terraform.d/credentials.tfrc.json
 
 # Other
 
