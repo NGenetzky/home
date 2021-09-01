@@ -1,0 +1,1 @@
+.local/src/github.com.tpope.vim-sensible/plugin/sensible.vim
