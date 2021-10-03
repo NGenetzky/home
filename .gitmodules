@@ -4,3 +4,6 @@
 [submodule ".dotfiles"]
 	path = .dotfiles
 	url = https://github.com/NGenetzky/dotfiles.git
+[submodule ".local/share/bash_it"]
+	path = .local/share/bash_it
+	url = https://github.com/Bash-it/bash-it.git
