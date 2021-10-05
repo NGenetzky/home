@@ -142,7 +142,9 @@ _bootstrap_nvim(){
     fi
     nvim_dir="${HOME}/.config/nvim/"
     if [ ! -f "${HOME}/.config/nvim/Makefile" ] ; then
-        return 1
+	if ! yadm submodule update --init --recursive ; then
+		return 1
+	fi
     fi
     cd "${nvim_dir}"
 
