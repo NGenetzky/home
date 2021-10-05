@@ -137,6 +137,9 @@ _bootstrap_python3(){
 }
 
 _bootstrap_nvim(){
+    if ! command -v 'nvim' >/dev/null 2>&1; then
+        return 0
+    fi
     nvim_dir="${HOME}/.config/nvim/"
     if [ ! -f "${HOME}/.config/nvim/Makefile" ] ; then
         return 1
