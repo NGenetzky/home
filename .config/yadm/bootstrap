@@ -109,6 +109,27 @@ _bootstrap_mkdir(){
         "${HOME}/bin/"
 }
 
+_bootstrap_apts(){
+    if ! command -v 'sudo' >/dev/null 2>&1; then
+        return 0
+    fi
+    # sudo apt-get -y install
+    sudo apt-get -y install --no-install-recommends \
+        gir1.2-spiceclientgtk-3.0 \
+        spice-client-gtk \
+        virt-manager \
+        virt-viewer
+}
+
+_bootstrap_snaps(){
+    if ! command -v 'snap' >/dev/null 2>&1; then
+        return 0
+    fi
+    if ! command -v 'nvim' >/dev/null 2>&1; then
+        sudo snap install nvim
+    fi
+}
+
 _bootstrap_tpm(){
     S_TPM="${HOME}/.tmux/plugins/tpm"
     [ -d "${S_TPM}" ] && return 0
@@ -132,8 +153,10 @@ _bootstrap_vim(){
 }
 
 _bootstrap_python3(){
-    # TODO: Require root
-
+    if ! command -v 'sudo' >/dev/null 2>&1; then
+        return 0
+    fi
+    # TODO: Avoid require sudo
     # [python__base_packages3](https://docs.debops.org/en/stable-2.2/ansible/roles/python/defaults/main.html#python-3-management)
     sudo apt-get -y install \
         'python3-httplib2' 'python3-pip' 'python3-setuptools' 'python3-pycurl' \
@@ -177,7 +200,10 @@ _bootstrap_yadm(){
 _bootstrap_user(){
     # _bootstrap_yadm
     _bootstrap_mkdir
+
     # _bootstrap_tpm
+
+    # NOTE: Only one of these two should be enabled
     # _bootstrap_vim
     _bootstrap_nvim
 }
@@ -186,6 +212,9 @@ _bootstrap_root(){
     apt_get_update_maybe
     apt_get_install_0
     apt_get_install_1
+
+    _bootstrap_apts # NOTE: Require sudo.
+    _bootstrap_snaps
 
     _bootstrap_python3
 
