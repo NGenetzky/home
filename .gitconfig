@@ -1,0 +1,47 @@
+[user]
+	email = nathan.genetzky@legrand.com
+    ; email = nathan@genetzky.us
+	name = Nathan Genetzky
+[push]
+	default = current
+[color]
+	ui = auto
+#[core]
+#	sshCommand = ssh -F ~/.ssh/config2
+[alias]
+	lg = !"git lg1"
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    c = commit
+    fethc = fetch
+    f = fetch
+    gc = commit
+[diff "json"]
+    #textconv = json_pp # This has issues
+    external = jsondiff
+    renames = true
+; [credential "https://bitbucket.org/n-genetzky/"]
+; 	username = ngenetzky
+; 	helper = cache
+[credential]
+	helper = store
+[ghq]
+	root = ~/git/
+[receive]
+	denyCurrentBranch = updateInstead
+[checkout]
+	defaultRemote = origin
+
+################################################################################
+; https://stackoverflow.com/questions/18019142/how-to-clone-a-github-gist-via-ssh-protocol
+[url "ssh://git@gist.github.com/"]
+    pushInsteadOf = https://gist.github.com/ngenetzky/
+    pushInsteadOf = https://gist.github.com/
+[url "ssh://git@github.com/"]
+    pushInsteadOf = https://github.com/
+[url "ssh://git@bitbucket.org/"]
+    pushInsteadOf = https://bitbucket.org/
+[url "ssh://git@gitlab.com/"]
+    pushInsteadOf = https://gitlab.com/
+################################################################################
+
