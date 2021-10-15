@@ -112,7 +112,9 @@ _bootstrap_mkdir(){
 _bootstrap_tpm(){
     S_TPM="${HOME}/.tmux/plugins/tpm"
     [ -d "${S_TPM}" ] && return 0
+    [ -e "${HOME}/.tmux.conf" ] || return 0
     git clone --depth=1 'https://github.com/tmux-plugins/tpm.git' "${S_TPM}"
+    [ -n "${TMUX}" ] && return 0
     "${S_TPM}/bin/install_plugins"
 }
 
