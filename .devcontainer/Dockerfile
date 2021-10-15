@@ -11,10 +11,17 @@ ARG FROM_IMAGE="jgoerzen/debian-base-${DEBASE_VARIANT}:${VARIANT}"
 
 FROM ${FROM_IMAGE}
 
-ARG USERNAME=user
+
 COPY ./.devcontainer/ /.devcontainer/
 
-RUN USERNAME="${USERNAME}" /.devcontainer/ngenetzky_devcontainer_debian.bash
+ARG USERNAME=user
+
+ARG YADM_SRCURI='https://home.genetzky.us'
+ARG YADM_SRCDIR='/usr/local/share/us.genetzky.home.git'
+# ARG YADM_SRCREV='wip/bootstrap'
+ARG YADM_SRCREV='wip/yadm-v1'
+
+RUN USERNAME="${USERNAME}" YADM_SRCREV="${YADM_SRCREV}"  /.devcontainer/ngenetzky_devcontainer_debian.bash
 
 ENTRYPOINT ["/usr/local/bin/boot-debian-base"]
 CMD [ "sleep", "infinity" ]

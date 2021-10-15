@@ -104,10 +104,10 @@ useradd_user(){
 
 }
 
-YADM_SRCURI='https://home.genetzky.us'
-YADM_SRCDIR='/usr/local/share/us.genetzky.home.git'
+YADM_SRCURI="${YADM_SRCURI-https://home.genetzky.us}"
+YADM_SRCDIR="${YADM_SRCDIR-/usr/local/share/us.genetzky.home.git}"
 # YADM_SRCREV='HEAD'
-YADM_SRCREV='wip/bootstrap'
+YADM_SRCREV="${YADM_SRCREV-wip/bootstrap}"
 
 yadm_clone_src(){
     if [ -d "${YADM_SRCDIR}" ] ; then
