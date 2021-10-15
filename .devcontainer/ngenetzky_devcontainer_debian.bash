@@ -107,7 +107,7 @@ useradd_user(){
 YADM_SRCURI='https://home.genetzky.us'
 YADM_SRCDIR='/usr/local/share/us.genetzky.home.git'
 # YADM_SRCREV='HEAD'
-YADM_SRCREV='5b52fc58ead2d71cec6f76c5eedb307e3c3a7109'
+YADM_SRCREV='wip/bootstrap'
 
 yadm_clone_src(){
     if [ -d "${YADM_SRCDIR}" ] ; then
@@ -120,7 +120,9 @@ yadm_clone_src(){
     cd "${YADM_SRCDIR}" || return 1
 
     # git checkout "${YADM_SRCREV}"
-    git symbolic-ref HEAD "refs/heads/${YADM_SRCREV}"
+    git symbolic-ref 'HEAD' "refs/heads/${YADM_SRCREV}"
+    # WARN: Yadm is doing something a little strange here...
+    git branch -f 'master' "${YADM_SRCREV}"
 }
 
 ngenetzky_devcontainer_debian(){
