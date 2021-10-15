@@ -1,0 +1,3 @@
+[submodule ".local/src/gh.ngenetzky.shlib"]
+	path = .local/src/gh.ngenetzky.shlib
+	url = https://github.com/NGenetzky/shlib.git
