@@ -121,7 +121,7 @@ _bootstrap_vim(){
         return 0
     fi
     if [ ! -f "${HOME}/.vim/autoload/plug.vim" ] ; then
-        curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
+        curl -fLo "${HOME}/.vim/autoload/plug.vim" --silent --create-dirs \
           'https://raw.githubusercontent.com/junegunn/vim-plug/359ce90b9b37442974fd3ccd9279493d85efb3af/plug.vim'
     fi
     vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
