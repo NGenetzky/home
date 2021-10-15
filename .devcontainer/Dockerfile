@@ -11,6 +11,21 @@ ARG FROM_IMAGE="jgoerzen/debian-base-${DEBASE_VARIANT}:${VARIANT}"
 
 FROM ${FROM_IMAGE}
 
+RUN apt-get --quiet --yes update \
+    # We first install these packages
+    # 'apt-utils dialog' to avoid skipping package configuration
+    && apt-get -y install --no-install-recommends \
+        apt-utils \
+        dialog \
+    # 'git' so that we can configure etckeeper
+    # 'sudo' so that we can add users to it below.
+    && apt-get -y install --no-install-recommends \
+        git \
+        sudo \
+    # Clean up
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ./.devcontainer/ /.devcontainer/
 
