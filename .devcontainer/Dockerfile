@@ -34,7 +34,8 @@ ARG USERNAME=user
 ARG YADM_SRCURI='https://home.genetzky.us'
 ARG YADM_SRCDIR='/usr/local/share/us.genetzky.home.git'
 # ARG YADM_SRCREV='wip/bootstrap'
-ARG YADM_SRCREV='wip/yadm-v1'
+# ARG YADM_SRCREV='wip/yadm-v1'
+ARG YADM_SRCREV='wip/yadm-v2'
 
 RUN USERNAME="${USERNAME}" YADM_SRCREV="${YADM_SRCREV}"  /.devcontainer/ngenetzky_devcontainer_debian.bash
 
