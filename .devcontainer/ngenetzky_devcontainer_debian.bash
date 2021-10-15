@@ -104,14 +104,22 @@ useradd_user(){
 
 }
 
+YADM_SRCURI='https://home.genetzky.us'
+YADM_SRCDIR='/usr/local/share/us.genetzky.home.git'
+YADM_SRCREV='HEAD'
+
 yadm_clone_src(){
-    if [ -d "/usr/local/share/github.com.genetzky.home.git" ] ; then
+    if [ -d "${YADM_SRCDIR}" ] ; then
         return 0
     fi
 
     git clone --bare \
-        'https://home.genetzky.us' \
-        '/usr/local/share/us.genetzky.home.git'
+        "${YADM_SRCURI}" \
+        "${YADM_SRCDIR}"
+    cd "${YADM_SRCDIR}" || return 1
+
+    # git checkout "${YADM_SRCREV}"
+    git symbolic-ref HEAD "refs/heads/${YADM_SRCREV}"
 }
 
 ngenetzky_devcontainer_debian(){
@@ -127,13 +135,13 @@ ngenetzky_devcontainer_debian(){
     #locale.gen
 
     if [ -z "${USERNAME}" ]; then
-        yadm clone '/usr/local/share/us.genetzky.home.git'
+        yadm clone "${YADM_SRCDIR}"
     else
         useradd_user
         # sudo -u "${USERNAME}"
         su "${USERNAME}" \
             -- \
-            yadm clone '/usr/local/share/us.genetzky.home.git'
+            yadm clone "${YADM_SRCDIR}"
     fi
 
     apt_get_clean
