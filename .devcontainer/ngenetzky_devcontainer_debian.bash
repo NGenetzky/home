@@ -125,6 +125,20 @@ yadm_clone_src(){
     git branch -f 'master' "${YADM_SRCREV}"
 }
 
+yadm_workaround_v1_vs_v2(){
+    if [ -e "${HOME}/.config/yadm/bootstrap" ]; then
+        if [ -e "${HOME}/.yadm/bootstrap" ]; then
+            rm "${HOME}/.yadm/bootstrap"
+        else
+            ln -sT "${HOME}/.yadm/bootstrap" "../.config/yadm/bootstrap"
+        fi
+    else
+        if [ -e "${HOME}/.yadm/bootstrap" ]; then
+            ln -sT "${HOME}/.config/yadm/bootstrap" "../../.yadm/bootstrap"
+        fi
+    fi
+}
+
 ngenetzky_devcontainer_debian(){
     apt_get_update_maybe
     # apt_get_install_0
@@ -140,7 +154,10 @@ ngenetzky_devcontainer_debian(){
     if [ -z "${USERNAME}" ]; then
         yadm clone "${YADM_SRCDIR}"
 
-        yadm bootstrap || true
+        if ! yadm bootstrap ; then
+            yadm_workaround_v1_vs_v2
+            yadm bootstrap
+        fi
     else
         useradd_user
         # sudo -u "${USERNAME}"
