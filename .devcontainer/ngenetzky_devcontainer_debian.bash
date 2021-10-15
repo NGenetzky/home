@@ -106,7 +106,8 @@ useradd_user(){
 
 YADM_SRCURI='https://home.genetzky.us'
 YADM_SRCDIR='/usr/local/share/us.genetzky.home.git'
-YADM_SRCREV='HEAD'
+# YADM_SRCREV='HEAD'
+YADM_SRCREV='5b52fc58ead2d71cec6f76c5eedb307e3c3a7109'
 
 yadm_clone_src(){
     if [ -d "${YADM_SRCDIR}" ] ; then
@@ -136,12 +137,19 @@ ngenetzky_devcontainer_debian(){
 
     if [ -z "${USERNAME}" ]; then
         yadm clone "${YADM_SRCDIR}"
+
+        yadm bootstrap || true
     else
         useradd_user
         # sudo -u "${USERNAME}"
         su "${USERNAME}" \
             -- \
             yadm clone "${YADM_SRCDIR}"
+
+        # sudo -u "${USERNAME}"
+        su "${USERNAME}" \
+            -- \
+            yadm bootstrap || true
     fi
 
     apt_get_clean
