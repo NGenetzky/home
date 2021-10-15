@@ -27,6 +27,9 @@ _bootstrap_vim(){
         curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
           'https://raw.githubusercontent.com/junegunn/vim-plug/359ce90b9b37442974fd3ccd9279493d85efb3af/plug.vim'
     fi
+
+    # WARN: This does not cover all possible locations.
+    [ -e "${HOME}/.vimrc" ] || return 0
     vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 }
 
