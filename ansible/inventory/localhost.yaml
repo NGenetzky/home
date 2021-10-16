@@ -3,10 +3,17 @@
 public_ngenetzky_ansible_local:
   hosts:
     localhost:
+    ngenetzky-fit3:
   vars:
     ansible_connection: local
     ansible_python_interpreter: '{{ansible_playbook_python}}'
     ansible_ssh_host: localhost
+
+public_ngenetzky_defaults_debops:
+  children:
+    public_ngenetzky_ansible_local:
+  vars:
+    public_ngenetzky_domain: 'genetzky.us'
 
 debops_service_controller:
   children:
