@@ -14,6 +14,14 @@ debops_service_controller:
   vars:
     controller__install_systemwide: False # default=True
 
+public_ngenetzky_staging_grml:
+  children:
+    public_ngenetzky_ansible_local:
+  vars:
+      ferm__enabled: False
+      apt__sources_deploy_state: "absent"
+      system_users__self: False
+
 public_ngenetzky_staging_debops:
   children:
     public_ngenetzky_ansible_local:
