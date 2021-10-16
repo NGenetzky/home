@@ -7,7 +7,8 @@ public_ngenetzky_ansible_local:
   vars:
     ansible_connection: local
     ansible_python_interpreter: '{{ansible_playbook_python}}'
-    ansible_ssh_host: localhost
+    #ansible_ssh_host: localhost
+    ansible_host: localhost
 
 public_ngenetzky_defaults_debops:
   children:
