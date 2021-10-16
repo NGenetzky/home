@@ -34,7 +34,11 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.profiles.linux": {
+			"bash_shell": { "path": "/bin/bash", "args": [""] },
+			"bash_login": { "path": "/bin/bash", "args": ["-l"] },
+			"zsh_login": { "path": "zsh", "args": ["-l"] },
+		},
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
