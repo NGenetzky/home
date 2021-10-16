@@ -5,3 +5,7 @@
 #!.config/yadm/bootstrap
 
 !.devcontainer/ngenetzky_devcontainer_debian.bash
+
+# Local copy of git repo. Powerfull but...
+# WARN: Bad for reproducability/caching.
+!.git/
