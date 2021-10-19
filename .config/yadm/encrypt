@@ -11,6 +11,10 @@
 .ssh/*id_ed25519
 .ssh/*id_rsa
 
+# python utilities
+
+.python-gitlab.cfg
+
 # debops in ~/
 ansible/secret/*
 
