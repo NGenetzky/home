@@ -128,6 +128,9 @@ _bootstrap_snaps(){
     if ! command -v 'nvim' >/dev/null 2>&1; then
         sudo snap install nvim
     fi
+    if ! command -v 'joplin-desktop' >/dev/null 2>&1; then
+        sudo snap install joplin-desktop
+    fi
 }
 
 _bootstrap_tpm(){
