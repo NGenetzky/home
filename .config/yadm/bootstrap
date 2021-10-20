@@ -155,6 +155,19 @@ _bootstrap_vim(){
     vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 }
 
+_bootstrap_spf13vim(){
+    if ! command -v 'vim' >/dev/null 2>&1; then
+        return 0
+    fi
+    if [ ! -e "${HOME}/.vimrc.bundles.local" ] ; then
+        echo "UnBundle 'amirh/HTML-AutoCloseTag'" >> .vimrc.bundles.local
+        ln -frst ./ .spf13-vim-3/.vimrc .spf13-vim-3/.vimrc.before .spf13-vim-3/.vimrc.bundles
+    fi
+    if [ ! -d "${HOME}/.spf13-vim3" ] ; then
+        curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+    fi
+}
+
 _bootstrap_python3(){
     if ! command -v 'sudo' >/dev/null 2>&1; then
         return 0
@@ -206,7 +219,8 @@ _bootstrap_user(){
 
     # _bootstrap_tpm
 
-    # NOTE: Only one of these two should be enabled
+    # NOTE: Only one of these should be enabled
+    _bootstrap_spf13vim
     # _bootstrap_vim
     _bootstrap_nvim
 }
