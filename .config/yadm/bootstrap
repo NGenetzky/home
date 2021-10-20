@@ -160,12 +160,15 @@ _bootstrap_spf13vim(){
         return 0
     fi
     if [ ! -e "${HOME}/.vimrc.bundles.local" ] ; then
+        # https://github.com/spf13/spf13-vim/pull/1035
         echo "UnBundle 'amirh/HTML-AutoCloseTag'" >> .vimrc.bundles.local
-        ln -frst ./ .spf13-vim-3/.vimrc .spf13-vim-3/.vimrc.before .spf13-vim-3/.vimrc.bundles
     fi
-    if [ ! -d "${HOME}/.spf13-vim3" ] ; then
-        curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+    mkdir -p "${HOME}/.config/nvim/"
+    if [ ! -d "${HOME}/.spf13-vim-3" ] ; then
+        curl 'https://j.mp/spf13-vim3' -L > .spf13-vim.sh && sh spf13-vim.sh
     fi
+    ln -frst "${HOME}/.config/nvim/" "${HOME}/.spf13-vim-3/.vimrc"
+    ln -frst "${HOME}" "${HOME}/.spf13-vim-3/.vimrc" "${HOME}/.spf13-vim-3/.vimrc.before" "${HOME}/.spf13-vim-3/.vimrc.bundles"
 }
 
 _bootstrap_python3(){
