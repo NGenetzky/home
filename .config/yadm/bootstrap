@@ -131,6 +131,10 @@ _bootstrap_snaps(){
     if ! command -v 'joplin-desktop' >/dev/null 2>&1; then
         sudo snap install joplin-desktop
     fi
+    if ! command -v 'code' >/dev/null 2>&1; then
+        # code classic  Code editing. Redefined.
+        sudo snap install --classic code
+    fi
 }
 
 _bootstrap_tpm(){
