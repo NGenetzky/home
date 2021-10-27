@@ -116,6 +116,9 @@ _bootstrap_apts(){
     if ! command -v 'rg' >/dev/null 2>&1; then
         sudo apt-get install ripgrep
     fi
+    if ! command -v 'barrier' >/dev/null 2>&1; then
+        sudo apt-get install barrier
+    fi
     # sudo apt-get -y install
     sudo apt-get -y install --no-install-recommends \
         gir1.2-spiceclientgtk-3.0 \
@@ -246,7 +249,6 @@ _bootstrap_root(){
     apt_get_install_0
     apt_get_install_1
 
-<<<<<<< HEAD
     _bootstrap_apts # NOTE: Require sudo.
     _bootstrap_snaps
 
