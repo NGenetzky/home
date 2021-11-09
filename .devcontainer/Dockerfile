@@ -29,20 +29,26 @@ RUN apt-get --quiet --yes update \
 
 COPY ./.devcontainer/ /.devcontainer/
 
-ARG USERNAME=user
-ARG YADM_SRCDIR='/usr/local/share/yadm_repo_0.git'
-
-ARG YADM_SRCURI='https://home.genetzky.us'
-# ARG YADM_SRCREV='wip/bootstrap'
-# ARG YADM_SRCREV='wip/yadm-v1'
-# ARG YADM_SRCREV='wip/yadm-v2'
-# ARG YADM_SRCREV='wip/devcontainer'
 ARG YADM_SRCREV='master'
+ARG YADM_SRCURI='https://home.genetzky.us'
+# ARG YADM_SRCURI='https://github.com/NGenetzky/home'
 
 # ARG YADM_SRCURI='/usr/local/share/yadm_src.git'
 # COPY ./.git/ "${YADM_SRCURI}"
 
-RUN USERNAME="${USERNAME}" YADM_SRCREV="${YADM_SRCREV}"  /.devcontainer/ngenetzky_devcontainer_debian.bash
+RUN \
+    USERNAME="" \
+    YADM_SRCDIR='/usr/local/share/yadm_repo_0.git' \
+    YADM_SRCREV="${YADM_SRCREV}" \
+    /.devcontainer/ngenetzky_devcontainer_debian.bash
+
+ARG USERNAME=user
+ARG YADM_SRCDIR='/usr/local/share/yadm_repo_1.git'
+RUN \
+    USERNAME="${USERNAME}" \
+    YADM_SRCDIR='/usr/local/share/yadm_repo_0.git' \
+    YADM_SRCREV="${YADM_SRCREV}" \
+    /.devcontainer/ngenetzky_devcontainer_debian.bash
 
 ENTRYPOINT ["/usr/local/bin/boot-debian-base"]
 CMD [ "sleep", "infinity" ]
