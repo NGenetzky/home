@@ -36,7 +36,8 @@ ARG YADM_SRCURI='https://home.genetzky.us'
 # ARG YADM_SRCREV='wip/bootstrap'
 # ARG YADM_SRCREV='wip/yadm-v1'
 # ARG YADM_SRCREV='wip/yadm-v2'
-ARG YADM_SRCREV='wip/devcontainer'
+# ARG YADM_SRCREV='wip/devcontainer'
+ARG YADM_SRCREV='master'
 
 # ARG YADM_SRCURI='/usr/local/share/yadm_src.git'
 # COPY ./.git/ "${YADM_SRCURI}"
