@@ -42,6 +42,9 @@ ARG YADM_SRCREV='master'
 # ARG YADM_SRCURI='/usr/local/share/yadm_src.git'
 # COPY ./.git/ "${YADM_SRCURI}"
 
+RUN USERNAME="" YADM_SRCREV="${YADM_SRCREV}"  /.devcontainer/ngenetzky_devcontainer_debian.bash
+
+ARG YADM_SRCDIR='/usr/local/share/yadm_repo_1.git'
 RUN USERNAME="${USERNAME}" YADM_SRCREV="${YADM_SRCREV}"  /.devcontainer/ngenetzky_devcontainer_debian.bash
 
 ENTRYPOINT ["/usr/local/bin/boot-debian-base"]
