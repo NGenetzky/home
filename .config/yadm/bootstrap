@@ -116,15 +116,17 @@ _bootstrap_apts(){
     if ! command -v 'rg' >/dev/null 2>&1; then
         sudo apt-get install ripgrep
     fi
-    if ! command -v 'barrier' >/dev/null 2>&1; then
-        sudo apt-get install barrier
-    fi
-    # sudo apt-get -y install
-    sudo apt-get -y install --no-install-recommends \
-        gir1.2-spiceclientgtk-3.0 \
-        spice-client-gtk \
-        virt-manager \
-        virt-viewer
+
+    # TODO: Split graphical apps
+    # if ! command -v 'barrier' >/dev/null 2>&1; then
+    #     sudo apt-get install barrier
+    # fi
+    # # sudo apt-get -y install
+    # sudo apt-get -y install --no-install-recommends \
+    #     gir1.2-spiceclientgtk-3.0 \
+    #     spice-client-gtk \
+    #     virt-manager \
+    #     virt-viewer
 }
 
 _bootstrap_snaps(){
