@@ -6,9 +6,11 @@
 		"dockerfile": "Dockerfile",
 		"context": "../", // defaults to "./"
 		"args": {
+			"DEBASE_VARIANT": "standard", // debase
 			"USERNAME": "user", // VSC_CUSTOM_USER
 			"USER_UID": "1000", // VSC_CUSTOM_USER
-			"DEBASE_VARIANT": "standard",
+			"YADM_SRCREV": "master", // ngenetzky_devcontainer_debian
+			"YADM_SRCURI": "https://home.genetzky.us", // ngenetzky_devcontainer_debian
 		}
 	},
 	"mounts": [

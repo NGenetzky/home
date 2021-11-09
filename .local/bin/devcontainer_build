@@ -15,5 +15,6 @@ NAME_IMAGE="${NAME}"
 # --build-arg "USERNAME=$(id -un)"
 docker build --rm \
     -t "${NAME}" \
+    --build-arg "YADM_SRCREV=${YADM_SRCREV-master}" \
     -f ./.devcontainer/Dockerfile \
     ./
