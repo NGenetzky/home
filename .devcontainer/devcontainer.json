@@ -1,0 +1,60 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/azure-ansible
+{
+	"name": "home",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "../", // defaults to "./"
+		"args": {
+			"USERNAME": "user", // VSC_CUSTOM_USER
+			"USER_UID": "1000", // VSC_CUSTOM_USER
+			"DEBASE_VARIANT": "standard",
+		}
+	},
+	"mounts": [
+		// "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" // VSC_DOCKER
+	],
+	"containerEnv": {
+		// https://github.com/jgoerzen/docker-debian-base-security#environment-variables
+		"DEBBASE_NO_STARTUP_APT": "true",
+		"DEBBASE_SSH": "enabled",
+		"DEBBASE_SYSLOG": "stdout",
+		"DEBBASE_TIMEZONE": "America/Chicago",
+	},
+	"runArgs": [
+		// "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" // VSC_CPP
+		"--stop-signal=SIGRTMIN+3", // VSC_DEBASE
+		"--tmpfs", "/run:size=100M", // VSC_DEBASE
+		"--tmpfs", "/run/lock:size=100M", // VSC_DEBASE
+		"-v", "/sys/fs/cgroup:/sys/fs/cgroup:ro", // VSC_DEBASE
+		// "--name=vsc-home", // VSC_DEBASE
+	],
+	"overrideCommand": false, // VSC_DEBASE
+	"updateRemoteUserUID": false, // VSC_CUSTOM_USER
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"terminal.integrated.profiles.linux": {
+			"bash_shell": { "path": "/bin/bash", "args": [""] },
+			"bash_login": { "path": "/bin/bash", "args": ["-l"] },
+			"zsh_login": { "path": "zsh", "args": ["-l"] },
+		},
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		// "vscoss.vscode-ansible",
+		// "redhat.vscode-yaml",
+		// "ms-azuretools.vscode-docker"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [ 22 ],
+	"appPort": [ "127.0.0.1:10122:22" ],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "ansible --version",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "user", // VSC_CUSTOM_USER
+}
