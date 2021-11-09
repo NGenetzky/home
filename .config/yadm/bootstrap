@@ -135,17 +135,17 @@ _bootstrap_yadm(){
         return 0
     fi
 
-    yadm clone 'https://home.genetzky.us'
+    yadm clone "${YADM_SRCURI}"
     yadm remote set-url origin --push none
 }
 
 ################################################################################
 
 _bootstrap_user(){
-    _bootstrap_yadm
+    # _bootstrap_yadm
     _bootstrap_mkdir
-    _bootstrap_tpm
-    _bootstrap_vim
+    # _bootstrap_tpm
+    # _bootstrap_vim
 }
 
 _bootstrap_root(){
@@ -153,7 +153,7 @@ _bootstrap_root(){
     apt_get_install_0
     apt_get_install_1
     useradd_user
-    _bootstrap_yadm
+    # _bootstrap_yadm
 
     # TODO
     #update-alternatives --set editor "$(which nvim)"
@@ -170,6 +170,8 @@ _bootstrap(){
 }
 
 ################################################################################
+
+YADM_SRCURI="${YADM_SRCURI-https://home.genetzky.us}"
 
 set -eu
 _bootstrap
