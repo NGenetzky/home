@@ -65,7 +65,7 @@ apt_get_install_1(){
 }
 
 useradd_user(){
-    if [ -z "${USERNAME}" ]; then
+    if [ -z "${USERNAME-}" ]; then
         return 0
     fi
     USER_UID=${USER_UID:-"automatic"}
