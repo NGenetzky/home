@@ -151,7 +151,7 @@ ngenetzky_devcontainer_debian(){
     # TODO
     #locale.gen
 
-    if [ -z "${USERNAME}" ]; then
+    if [ -z "${USERNAME-}" ]; then
         yadm clone "${YADM_SRCDIR}"
 
         if ! yadm bootstrap ; then
@@ -161,12 +161,12 @@ ngenetzky_devcontainer_debian(){
     else
         useradd_user
         # sudo -u "${USERNAME}"
-        su "${USERNAME}" \
+        su "${USERNAME?}" \
             -- \
             yadm clone "${YADM_SRCDIR}"
 
         # sudo -u "${USERNAME}"
-        su "${USERNAME}" \
+        su "${USERNAME?}" \
             -- \
             yadm bootstrap || true
     fi
