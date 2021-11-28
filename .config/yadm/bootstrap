@@ -154,6 +154,8 @@ _bootstrap_user(){
 }
 
 _bootstrap_root(){
+    export DEBIAN_FRONTEND=noninteractive
+
     apt_get_update_maybe
     apt_get_install_0
     apt_get_install_1
