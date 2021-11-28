@@ -30,11 +30,11 @@ RUN apt-get --quiet --yes update \
 COPY ./.devcontainer/ /.devcontainer/
 
 ARG YADM_SRCREV='master'
-# ARG YADM_SRCURI='https://home.genetzky.us'
+ARG YADM_SRCURI='https://home.genetzky.us'
 # ARG YADM_SRCURI='https://github.com/NGenetzky/home'
 
-ARG YADM_SRCURI='/usr/local/share/yadm_src.git'
-COPY ./.git/ "${YADM_SRCURI}"
+# ARG YADM_SRCURI='/usr/local/share/yadm_src.git'
+# COPY ./.git/ "${YADM_SRCURI}"
 
 RUN \
     USERNAME="" \
