@@ -128,32 +128,38 @@ _bootstrap_vim(){
 }
 
 _bootstrap_yadm(){
-    if [ -d "$HOME/.local/share/yadm/repo.git" ] ; then
+    if ! command -v 'yadm' >/dev/null 2>&1; then
         return 0
     fi
-    if [ -d "$HOME/.yadm/repo.git" ] ; then
-        return 0
+    gb="$(yadm branch --show-current 2>/dev/null)"
+    if [ -z "${gb}" ]; then
+        yadm clone "${YADM_SRCURI}"
+        yadm remote set-url origin --push none
+        gb="$(yadm branch --show-current 2>/dev/null)"
     fi
-
-    yadm clone "${YADM_SRCURI}"
-    yadm remote set-url origin --push none
+    case "${gb}" in
+      master)
+        yadm checkout -b "live/$(id -un).$(hostname)"
+      ;;
+    esac
 }
 
 ################################################################################
 
 _bootstrap_user(){
-    # _bootstrap_yadm
     _bootstrap_mkdir
+    _bootstrap_yadm
     # _bootstrap_tpm
     # _bootstrap_vim
 }
 
 _bootstrap_root(){
+    _bootstrap_yadm
+
     apt_get_update_maybe
-    apt_get_install_0
+    #apt_get_install_0
     apt_get_install_1
     useradd_user
-    # _bootstrap_yadm
 
     # TODO
     #update-alternatives --set editor "$(which nvim)"
