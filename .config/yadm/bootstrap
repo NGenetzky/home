@@ -53,17 +53,6 @@ apt_get_install_0() {
         --no-install-recommends ${PACKAGE_LIST}
 }
 
-apt_get_install_1(){
-    # From vscode common-debian
-    PACKAGE_LIST="yadm \
-        vim \
-        tmux \
-        "
-
-    apt-get -y install \
-        --no-install-recommends ${PACKAGE_LIST}
-}
-
 useradd_user(){
     if [ -z "${USERNAME-}" ]; then
         return 0
@@ -95,6 +84,53 @@ useradd_user(){
         fi
     fi
 
+}
+
+_bootstrap_apt_python3(){
+    # [python__base_packages3](https://docs.debops.org/en/stable-2.2/ansible/roles/python/defaults/main.html#python-3-management)
+    apt-get -y install --no-install-recommends \
+        'python3-httplib2' 'python3-pip' 'python3-setuptools' 'python3-pycurl' \
+        'python3-future' 'python3-virtualenv' 'python3-wheel' 'virtualenv'
+}
+
+_bootstrap_apts(){
+    APT_PACKAGES="\
+        tmux \
+        vim-nox \
+        yadm \
+        "
+
+    if ! command -v 'rg' >/dev/null 2>&1; then
+        APT_PACKAGES="${APT_PACKAGES} ripgrep"
+    fi
+
+    # TODO: Split graphical apps
+    # if ! command -v 'barrier' >/dev/null 2>&1; then
+    #     APT_PACKAGES="${APT_PACKAGES} barrier"
+    # fi
+    # APT_PACKAGES="${APT_PACKAGES} gir1.2-spiceclientgtk-3.0 spice-client-gtk virt-manager virt-viewer"
+
+    apt-get -y install --no-install-recommends \
+        ${APT_PACKAGES}
+}
+
+_bootstrap_snaps(){
+    if ! command -v 'sudo' >/dev/null 2>&1; then
+        return 0
+    fi
+    if ! command -v 'snap' >/dev/null 2>&1; then
+        return 0
+    fi
+    if ! command -v 'nvim' >/dev/null 2>&1; then
+        sudo snap install nvim
+    fi
+    if ! command -v 'joplin-desktop' >/dev/null 2>&1; then
+        sudo snap install joplin-desktop
+    fi
+    if ! command -v 'code' >/dev/null 2>&1; then
+        # code classic  Code editing. Redefined.
+        sudo snap install --classic code
+    fi
 }
 
 ################################################################################
@@ -149,7 +185,10 @@ _bootstrap_yadm(){
 _bootstrap_user(){
     # _bootstrap_yadm
     _bootstrap_mkdir
+
     # _bootstrap_tpm
+
+    # NOTE: Only one of these two should be enabled
     # _bootstrap_vim
 }
 
@@ -157,8 +196,12 @@ _bootstrap_root(){
     export DEBIAN_FRONTEND=noninteractive
 
     apt_get_update_maybe
-    apt_get_install_0
-    apt_get_install_1
+    # apt_get_install_0
+
+    _bootstrap_apts
+    _bootstrap_apt_python3
+    _bootstrap_snaps
+
     useradd_user
     # _bootstrap_yadm
 
