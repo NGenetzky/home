@@ -133,6 +133,21 @@ _bootstrap_snaps(){
     fi
 }
 
+_bootstrap_disable_vim_tiny(){
+    vim_exec="$(command -v vim)"
+    if [ -z "${vim_exec}" ] ; then
+        return 0
+    fi
+    # NOTE: Remove symlinks to vim.tiny if better versions exist.
+    if [ -L "${vim_exec}" ] ; then
+        if [ -e '/usr/bin/vim.nox' ] ; then
+            ln -sfT '/usr/bin/vim.nox' "${vim_exec}"
+        elif [ -e '/usr/bin/vim' ] ; then
+            ln -sfT '/usr/bin/vim' "${vim_exec}"
+        fi
+    fi
+}
+
 ################################################################################
 
 _bootstrap_mkdir(){
@@ -218,6 +233,8 @@ _bootstrap_root(){
     _bootstrap_apts
     _bootstrap_apt_python3
     _bootstrap_snaps
+
+    _bootstrap_disable_vim_tiny
 
     useradd_user
     # _bootstrap_yadm
