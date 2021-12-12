@@ -1,0 +1,104 @@
+---
+################################################################################
+# debops_all_hosts
+#
+# NOTE: The following command will output all service groups that are included by default.
+# grep 'all_hosts' ./ansible/playbooks/service/ -r | cut -d "'" -f 4 | sort
+#
+# debops_service_apt
+# debops_service_apt_install
+# debops_service_apt_listchanges
+# debops_service_apt_mark
+# debops_service_apt_preferences
+# debops_service_apt_proxy
+# debops_service_atd
+# debops_service_auth
+# debops_service_authorized_keys
+# debops_service_console
+# debops_service_core
+# debops_service_cron
+# debops_service_debops_fact
+# debops_service_dhparam
+# debops_service_environment
+# debops_service_etckeeper
+# debops_service_etc_services
+# debops_service_ferm
+# debops_service_fhs
+# debops_service_journald
+# debops_service_keyring
+# debops_service_ldap
+# debops_service_libuser
+# debops_service_locales
+# debops_service_logrotate
+# debops_service_machine
+# debops_service_mount
+# debops_service_netbase
+# debops_service_nsswitch
+# debops_service_ntp
+# debops_service_nullmailer
+# debops_service_pam_access
+# debops_service_pki
+# debops_service_proc_hidepid
+# debops_service_python
+# debops_service_python
+# debops_service_resolvconf
+# debops_service_resources
+# debops_service_root_account
+# debops_service_rsyslog
+# debops_service_sshd
+# debops_service_sudo
+# debops_service_sysctl
+# debops_service_system_groups
+# debops_service_system_users
+# debops_service_tcpwrappers
+# debops_service_tzdata
+# debops_service_unattended_upgrades
+# debops_service_users
+# debops_service_yadm
+
+# debops_all_hosts:
+
+core__admin_public_email: 'admin@{{ netbase__domain }}'
+core__admin_users: []
+core__packages: []
+etckeeper__repository_group: adm
+etckeeper__repository_permissions: '0750'
+journald__fss_enabled: false
+journald__fss_verify_key: null
+ldap__domain: '{{ netbase__domain }}'
+ldap__enabled: false
+netbase__domain: 'genetzky.us'
+netbase__host_ipv4_address: 127.0.1.1
+netbase__hosts_config_type: lineinfile
+nullmailer__enabled: false
+nullmailer__ldap_bindpw: ''
+pki_acme: false
+pki_ca_domain: ''
+pki_ca_organization: ''
+pki_default_domain: ''
+pki_default_realms: []
+pki_enabled: false
+pki_internal: false
+pki_scheduler: false
+python__raw_purge_v2: true
+python__v2: false
+root_account__dotfiles_enabled: false
+root_account__enabled: true
+root_account__generate_ssh_key: false
+root_account__password: '!'
+root_account__password_update: always
+sshd__ferm_limit: false
+sshd__known_hosts: ['bitbucket.org', 'github.com', 'gitlab.com']
+sshd__ldap_bindpw: ''
+sshd__optional_packages: []
+sudo__ldap_bindpw: ''
+system_users__default_accounts: []
+system_users__default_shell: /bin/bash
+system_users__dotfiles_enabled: false
+system_users__self: False
+system_users__self_name: 'root' # Must be set to avoid issue with 'Gather local Ansible user details'
+users__accounts: []
+users__dotfiles_enabled: false
+yadm__base_packages: []
+yadm__default_dotfiles: []
+yadm__dotfiles_enabled: false
