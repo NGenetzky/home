@@ -173,5 +173,10 @@ _bootstrap(){
 
 YADM_SRCURI="${YADM_SRCURI-https://home.genetzky.us}"
 
+YADM_DISTRO="$(lsb_release -si)"
+YADM_HOSTNAME="$(hostname)"
+YADM_OS="$(uname -s)"
+YADM_USER="$(id -un)"
+
 set -eu
 _bootstrap
