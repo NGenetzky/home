@@ -1,0 +1,4 @@
+# vim: syntax=sh ts=4 sw=4 sts=4 sr noet
+
+[home]
+checkout = git clone https://github.com/NGenetzky/home.git
