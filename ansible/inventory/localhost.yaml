@@ -8,3 +8,35 @@ all:
 debops_all_hosts:
   hosts:
     localhost:
+
+################################################################################
+# debops services
+#
+#debops_service_ansible: {}
+#debops_service_avahi: {}
+#debops_service_controller: {}
+#debops_service_docker_server: {}
+#debops_service_gitlab_runner: {}
+#debops_service_gitusers: {}
+#debops_service_ifupdown: {}
+#debops_service_java: {}
+#debops_service_libvirt: {}
+#debops_service_libvirtd: {}
+#debops_service_lvm: {}
+#debops_service_nfs: {}
+#debops_service_nfs_server: {}
+#debops_service_nginx: {}
+#debops_service_preseed: {}
+#debops_service_swapfile: {}
+
+debops_service_docker_server:
+  hosts:
+    localhost:
+
+debops_service_libvirtd:
+  hosts:
+    localhost:
+
+debops_service_lvm:
+  hosts:
+    localhost:
