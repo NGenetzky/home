@@ -1,0 +1,3 @@
+[submodule "debops"]
+	path = debops
+	url = https://github.com/debops/debops.git
