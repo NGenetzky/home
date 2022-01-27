@@ -128,15 +128,19 @@ _bootstrap_vim(){
 }
 
 _bootstrap_yadm(){
-    if [ -d "$HOME/.local/share/yadm/repo.git" ] ; then
-        return 0
-    fi
-    if [ -d "$HOME/.yadm/repo.git" ] ; then
-        return 0
+    case "$0" in
+        $HOME/.config/yadm/bootstrap) return 0 ;;
+        $HOME/.yadm/bootstrap) return 0 ;;
+        *.config/yadm/bootstrap)
+            YADM_SRCURI="${D_BASE}"
+        ;;
+    esac
+    if ! command -v yadm > /dev/null ; then
+        sudo apt-get -yq update && sudo apt-get install yadm
     fi
 
     yadm clone "${YADM_SRCURI}"
-    yadm remote set-url origin --push none
+    exec yadm bootstrap
 }
 
 ################################################################################
@@ -162,6 +166,7 @@ _bootstrap_root(){
 }
 
 _bootstrap(){
+    _bootstrap_yadm
     if [ "$(id -u)" -ne 0 ]; then
         _bootstrap_user
     else
@@ -172,6 +177,9 @@ _bootstrap(){
 ################################################################################
 
 YADM_SRCURI="${YADM_SRCURI-https://home.genetzky.us}"
+D_SCRIPT="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)"
+_REL_TO_BASE='../../'
+D_BASE="${D_SCRIPT}/${_REL_TO_BASE}"
 
 set -eu
 _bootstrap
