@@ -3,6 +3,17 @@
 # shellcheck disable=SC2086
 # shellcheck disable=SC2012
 
+
+APT_PACKAGE_LIST2="\
+apt-transport-https
+ca-certificates \
+curl \
+git \
+gnupg2 \
+openssh-client
+wget \
+"
+
 apt_get_update_maybe() {
     # shellcheck disable=SC2012
     if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
@@ -63,6 +74,10 @@ apt_get_install_1(){
 
     apt-get -yq install --no-install-recommends \
         ${PACKAGE_LIST}
+}
+
+apt_get_install_2(){
+    apt-get -yq install --no-install-recommends ${APT_PACKAGE_LIST2}
 }
 
 apt_get_clean(){
@@ -143,6 +158,7 @@ ngenetzky_devcontainer_debian(){
     apt_get_update_maybe
     # apt_get_install_0
     apt_get_install_1
+    apt_get_install_2
 
     yadm_clone_src
 
