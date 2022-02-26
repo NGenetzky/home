@@ -11,11 +11,22 @@
 .local/share/keyrings/login.keyring
 .local/share/keyrings/user.keystore
 
+# LUKS
+
+*luks.key
+*luks.pass
+
+# SSL
+certificate.pem
+privateKey.pem
+
 # .ssh/
+.ssh/*.key
 .ssh/*id_dsa
 .ssh/*id_ecdsa
 .ssh/*id_ed25519
 .ssh/*id_rsa
+.ssh/authorized_keys
 
 # python utilities
 
@@ -29,6 +40,12 @@ ansible/secret/*
 
 # Terraform
 .terraform.d/credentials.tfrc.json
+
+# Borg
+
+
+/.config/borg/keys/*
+/.config/borg/security/*
 
 # Other
 
