@@ -17,6 +17,7 @@
 *luks.pass
 
 # SSL
+
 certificate.pem
 privateKey.pem
 
@@ -29,7 +30,6 @@ privateKey.pem
 .ssh/authorized_keys
 
 # python utilities
-
 .python-gitlab.cfg
 
 # debops in ~/
@@ -42,10 +42,8 @@ ansible/secret/*
 .terraform.d/credentials.tfrc.json
 
 # Borg
-
-
-/.config/borg/keys/*
-/.config/borg/security/*
+.config/borg/keys/*
+.config/borg/security/*
 
 # Other
 
