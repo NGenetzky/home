@@ -106,6 +106,7 @@ _bootstrap_mkdir(){
         "${HOME}/.local/share/" \
         "${HOME}/.local/src/" \
         "${HOME}/.local/var/" \
+        "${HOME}/.ssh/" \
         "${HOME}/bin/"
 }
 
@@ -143,6 +144,21 @@ _bootstrap_yadm(){
     exec yadm bootstrap
 }
 
+_bootstrap_ssh_client(){
+    if ! command -v 'ssh' >/dev/null 2>&1; then
+        return 0
+    fi
+
+    #commment="$(id -un)@$(hostname --fqdn)"
+    comment="$(id -un)-$(hostname)-$(date --iso-8601)"
+    if [ ! -f "${HOME}/.ssh/id_rsa" ] ; then
+        ssh-keygen -q -N '' -t rsa -b 4096 -f "$HOME/.ssh/id_rsa" -C "${comment}"
+    fi
+    if [ ! -f "${HOME}/.ssh/id_ecdsa" ] ; then
+        ssh-keygen -t ecdsa -b 521 -N '' -f "${HOME}/.ssh/id_ecdsa" -C "${commment}"
+    fi
+}
+
 ################################################################################
 
 _bootstrap_user(){
@@ -150,6 +166,7 @@ _bootstrap_user(){
     _bootstrap_mkdir
     # _bootstrap_tpm
     # _bootstrap_vim
+    _bootstrap_ssh
 }
 
 _bootstrap_root(){
@@ -158,6 +175,7 @@ _bootstrap_root(){
     apt_get_install_1
     useradd_user
     # _bootstrap_yadm
+    _bootstrap_ssh_client
 
     # TODO
     #update-alternatives --set editor "$(which nvim)"
