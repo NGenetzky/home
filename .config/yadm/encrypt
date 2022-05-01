@@ -4,6 +4,12 @@
 .config/dconf/user
 .config/smbcredentials/*
 
+# KDE
+
+.config/kdeconnect/certificate.pem
+.config/kdeconnect/privateKey.pem
+.local/share/keyrings/login.keyring
+.local/share/keyrings/user.keystore
 
 # .ssh/
 .ssh/*id_dsa
@@ -17,6 +23,9 @@
 
 # debops in ~/
 ansible/secret/*
+
+# homelab-os
+.homelabos_vault_pass
 
 # Terraform
 .terraform.d/credentials.tfrc.json
