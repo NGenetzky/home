@@ -1,0 +1,21 @@
+
+# ./.config/
+
+.config/dconf/user
+.config/smbcredentials/*
+
+
+# .ssh/
+.ssh/*id_dsa
+.ssh/*id_ecdsa
+.ssh/*id_ed25519
+.ssh/*id_rsa
+
+
+# debops in ~/
+ansible/secret/*
+
+
+# Other
+
+.wgetrc
