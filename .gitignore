@@ -1,0 +1,30 @@
+# dirs
+.bash_history
+.oh-my-bash/
+.oh-my-zsh/
+.pylint.d/
+.vscode-server/bin/
+.vscode-server/data/
+.vscode-server/extensions/
+.vscode-server/extensionsCache/
+
+# files
+.osh-update
+.sdirs
+.ssh/known_hosts
+.viminfo
+
+# dirs 2
+
+/.bash_it/
+/.dotfiles/
+/.local/share/virtualenv/
+/.local/share/yadm/repo.git/
+/.vscode-server/
+
+# files 2
+
+/.lesshst
+/.python-history
+/.vim/.netrwhist
+/.wget-hsts
