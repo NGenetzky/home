@@ -1,0 +1,36 @@
+#!/bin/bash
+D_SCRIPT="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)"
+
+D_TOP="${D_SCRIPT}/../../"
+cd "${D_TOP}"
+
+set -eu
+set -x
+
+NAME="$(basename "$(pwd)")"
+NAME_CONTAINER="${NAME}"
+NAME_IMAGE="${NAME}"
+
+docker stop "${NAME_CONTAINER}" || true
+docker rm "${NAME_CONTAINER}" || true
+
+exec docker run -td --rm \
+   --stop-signal=SIGRTMIN+3 \
+   --tmpfs /run:size=100M \
+   --tmpfs /run/lock:size=100M \
+   -v '/sys/fs/cgroup:/sys/fs/cgroup:ro' \
+   -e DEBBASE_SSH='enabled' \
+   -p '127.0.0.1:1022:22' \
+   --name="${NAME}" \
+   "${NAME_IMAGE}"
+
+exit 0
+
+# from devcontainer.json
+#
+#"--stop-signal=SIGRTMIN+3", // VSC_DEBASE
+#"--tmpfs", "/run:size=100M", // VSC_DEBASE
+#"--tmpfs", "/run/lock:size=100M", // VSC_DEBASE
+#"-v", "/sys/fs/cgroup:/sys/fs/cgroup:ro", // VSC_DEBASE
+# "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" // VSC_CPP
+# "--name=vsc-home", // VSC_DEBASE
