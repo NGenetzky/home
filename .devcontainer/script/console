@@ -1,0 +1,18 @@
+#!/bin/bash
+D_SCRIPT="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)"
+
+D_TOP="${D_SCRIPT}/../../"
+cd "${D_TOP}"
+
+set -eu
+set -x
+
+NAME="$(basename "$(pwd)")"
+NAME_CONTAINER="${NAME}"
+NAME_IMAGE="${NAME}"
+
+exec docker exec -it \
+   "${NAME_CONTAINER}" \
+   -u 1000:1000 \
+   -w "/home/user/" \
+   /bin/bash
