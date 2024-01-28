@@ -1,7 +1,11 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/azure-ansible
+// REF: For format details, see https://aka.ms/devcontainer.json.
 //
 // REF: https://salsa.debian.org/jgoerzen/docker-debian-base#container-invocation-systemd-containers-busterbullseyebookwormsid
+//
+// REF: https://github.com/devcontainers/features
+// REF: https://github.com/devcontainers/images
+// REF: https://github.com/devcontainers/templates
+//
 {
 	"name": "home",
 	"build": {
