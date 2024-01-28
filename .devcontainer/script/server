@@ -14,25 +14,32 @@ NAME_IMAGE="${NAME}"
 docker stop "${NAME_CONTAINER}" || true
 docker rm "${NAME_CONTAINER}" || true
 
+# TODO: Handle commands like: start, stop, status, restart, etc
+# cmd="${1?}"
+
+# NOTE: For debugging it is nice to use '-it' not '-td --rm'
+# exec docker run -it
+
 # WARN: VSC_DEBASE requires different usage for host using cgroups v1 vs v2.
 # -v '/sys/fs/cgroup:/sys/fs/cgroup:ro' # NOTE: Use if host cgroup v1
-exec docker run -td --rm \
-   --stop-signal=SIGRTMIN+3 \
-   --tmpfs /run:size=100M \
-   --tmpfs /run/lock:size=100M \
-   -v /sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host \
-   -e DEBBASE_SSH='enabled' \
-   -p '127.0.0.1:1022:22' \
-   --name="${NAME}" \
-   "${NAME_IMAGE}"
+# exec docker run -td --rm \
+#    --stop-signal=SIGRTMIN+3 \
+#    --tmpfs /run:size=100M \
+#    --tmpfs /run/lock:size=100M \
+#    -v '/sys/fs/cgroup:/sys/fs/cgroup:ro' \
+#    -e DEBBASE_SSH='enabled' \
+#    -p '127.0.0.1:1022:22' \
+#    --name="${NAME}" \
+#    "${NAME_IMAGE}"
 
 exit 0
 
-# from devcontainer.json
+# REF from devcontainer.json
 #
 #"--stop-signal=SIGRTMIN+3", // VSC_DEBASE
 #"--tmpfs", "/run:size=100M", // VSC_DEBASE
 #"--tmpfs", "/run/lock:size=100M", // VSC_DEBASE
 #"-v", "/sys/fs/cgroup:/sys/fs/cgroup:ro", // VSC_DEBASE
+# "-v", "/sys/fs/cgroup:/sys/fs/cgroup:ro", // VSC_DEBASE // NOTE: Use if host cgroup v1
 # "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" // VSC_CPP
 # "--name=vsc-home", // VSC_DEBASE

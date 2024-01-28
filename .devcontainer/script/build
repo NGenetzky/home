@@ -1,0 +1,19 @@
+#!/bin/bash
+D_SCRIPT="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)"
+
+D_TOP="${D_SCRIPT}/../../"
+cd "${D_TOP}"
+
+set -eu
+set -x
+
+NAME="$(basename "$(pwd)")"
+NAME_IMAGE="${NAME}"
+
+# NOTE: Choosing not to use same uid and username.
+# --build-arg "USER_ID=$(id -u)"
+# --build-arg "USERNAME=$(id -un)"
+docker build --rm \
+    -t "${NAME}" \
+    -f ./.devcontainer/Dockerfile \
+    ./
