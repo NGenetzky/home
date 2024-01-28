@@ -7,6 +7,7 @@ ARG DEBASE_VARIANT="standard"
 # You can pick any Debian/Ubuntu-based image.
 # ARG FROM_IMAGE="buildpack-deps:${VARIANT}-curl"
 # ARG FROM_IMAGE="jgoerzen/debian-base-standard:${VARIANT}"
+# REF: https://salsa.debian.org/jgoerzen/docker-debian-base
 ARG FROM_IMAGE="jgoerzen/debian-base-${DEBASE_VARIANT}:${VARIANT}"
 
 FROM ${FROM_IMAGE}
