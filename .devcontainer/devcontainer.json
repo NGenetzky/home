@@ -36,21 +36,25 @@
 	"overrideCommand": false, // VSC_DEBASE
 	"updateRemoteUserUID": false, // VSC_CUSTOM_USER
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"terminal.integrated.profiles.linux": {
-			"bash_shell": { "path": "/bin/bash", "args": [""] },
-			"bash_login": { "path": "/bin/bash", "args": ["-l"] },
-			"zsh_login": { "path": "zsh", "args": ["-l"] },
+	"customizations": {
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"bash_shell": { "path": "/bin/bash", "args": [""] },
+					"bash_login": { "path": "/bin/bash", "args": ["-l"] },
+					"zsh_login": { "path": "zsh", "args": ["-l"] },
+				},
+			},
+
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				// "vscoss.vscode-ansible",
+				// "redhat.vscode-yaml",
+				// "ms-azuretools.vscode-docker"
+			],
 		},
 	},
-
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		// "vscoss.vscode-ansible",
-		// "redhat.vscode-yaml",
-		// "ms-azuretools.vscode-docker"
-	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [ 22 ],
