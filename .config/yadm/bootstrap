@@ -176,7 +176,8 @@ _bootstrap(){
 
 ################################################################################
 
-YADM_SRCURI="${YADM_SRCURI-https://home.genetzky.us}"
+# YADM_SRCURI="${YADM_SRCURI-https://github.com/ngenetzky/ngenetzky/home.git}"
+YADM_SRCURI="${YADM_SRCURI-https://github.com/ngenetzky/ngenetzky/home.git}"
 D_SCRIPT="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)"
 _REL_TO_BASE='../../'
 D_BASE="${D_SCRIPT}/${_REL_TO_BASE}"
