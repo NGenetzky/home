@@ -104,7 +104,7 @@ useradd_user(){
 
 }
 
-YADM_SRCURI="${YADM_SRCURI-https://github.com/ngenetzky/ngenetzky/home.git}"
+YADM_SRCURI="${YADM_SRCURI-https://github.com/ngenetzky/home.git}"
 YADM_SRCDIR="${YADM_SRCDIR-/usr/local/share/yadm_repo_0.git}"
 # YADM_SRCREV='HEAD'
 YADM_SRCREV="${YADM_SRCREV-master}"

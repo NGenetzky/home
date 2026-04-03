@@ -33,7 +33,7 @@ COPY ./.devcontainer/ /.devcontainer/
 ARG USERNAME=user
 ARG YADM_SRCDIR='/usr/local/share/yadm_repo_0.git'
 
-ARG YADM_SRCURI='https://github.com/ngenetzky/ngenetzky/home.git'
+ARG YADM_SRCURI='https://github.com/ngenetzky/home.git'
 # ARG YADM_SRCREV='wip/bootstrap'
 # ARG YADM_SRCREV='wip/yadm-v1'
 # ARG YADM_SRCREV='wip/yadm-v2'
