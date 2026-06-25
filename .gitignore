@@ -28,3 +28,10 @@
 /.python-history
 /.vim/.netrwhist
 /.wget-hsts
+
+**/git/github.com/*
+**/git/bitbucket.org/*
+
+# WSL
+
+./winhome/wslu
