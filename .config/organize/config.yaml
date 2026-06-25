@@ -1,11 +1,13 @@
 # organize configuration file
 # https://organize.readthedocs.io
 
+
 rules:
-  - name: "The name of this rule"
+  - name: "Find PDFs"
     locations:
-      - # your locations here
+      - ~/Downloads
+    subfolders: true
     filters:
-      - # your filters here
+      - extension: pdf
     actions:
-      - # your actions here
+      - echo: "Found PDF!"
