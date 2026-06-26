@@ -3,17 +3,30 @@ name: Container
 on:
   push:
     branches: [master]
+    paths:
+      - '.devcontainer/Dockerfile'
+      - '.devcontainer/ngenetzky_devcontainer_debian.bash'
+      - '.dockerignore'
+      - '.github/workflows/container.yml'
   pull_request:
     branches: [master]
+    paths:
+      - '.devcontainer/Dockerfile'
+      - '.devcontainer/ngenetzky_devcontainer_debian.bash'
+      - '.dockerignore'
+      - '.github/workflows/container.yml'
 
 jobs:
   build-push:
+    # NOTE: Change 'ubuntu-latest' to 'self-hosted' (or a custom label) for self-hosted runners.
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
       - uses: actions/checkout@v4
+      # NOTE: setup-qemu is required for multi-platform builds (linux/arm64) on amd64 hosts.
+      # On self-hosted ARM runners this step can be removed and 'platforms' scoped to native arch.
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
