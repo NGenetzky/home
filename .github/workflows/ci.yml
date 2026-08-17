@@ -18,6 +18,9 @@ on:
       - '.config/yadm/bootstrap'
       - '.github/workflows/ci.yml'
 
+permissions:
+  contents: read
+
 jobs:
   shellcheck:
     # NOTE: Change 'ubuntu-latest' to 'self-hosted' (or a custom label) for self-hosted runners.

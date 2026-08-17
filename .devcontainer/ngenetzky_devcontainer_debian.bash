@@ -12,10 +12,10 @@ yadm_clone_src() {
     git clone --bare "${YADM_SRCURI}" "${YADM_SRCDIR}"
     git -C "${YADM_SRCDIR}" symbolic-ref HEAD "refs/heads/${YADM_SRCREV}"
     git -C "${YADM_SRCDIR}" branch -f master "${YADM_SRCREV}"
-    git config --system --add safe.directory "${YADM_SRCDIR}"
 }
 
 yadm_clone_src
+git config --system --add safe.directory "${YADM_SRCDIR}"
 
 if [ -n "${USERNAME:-}" ]; then
     su "${USERNAME}" -- yadm clone "${YADM_SRCDIR}"
