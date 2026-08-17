@@ -1,0 +1,11 @@
+[user]
+	email = nathan@genetzky.us
+	name = Nathan Genetzky
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[url "git@github.com:"]
+	insteadOf = https://github.com/
