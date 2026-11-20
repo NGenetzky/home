@@ -1,0 +1,8 @@
+services:
+  home:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    image: ghcr.io/ngenetzky/home:latest
+    stdin_open: true
+    tty: true

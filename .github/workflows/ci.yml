@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.devcontainer/**'
+      - '.dockerignore'
+      - '.bash_aliases'
+      - '.config/yadm/bootstrap'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - '.devcontainer/**'
+      - '.dockerignore'
+      - '.bash_aliases'
+      - '.config/yadm/bootstrap'
+      - '.github/workflows/ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    # NOTE: Change 'ubuntu-latest' to 'self-hosted' (or a custom label) for self-hosted runners.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          severity: warning
+
+  build:
+    # NOTE: Change 'ubuntu-latest' to 'self-hosted' (or a custom label) for self-hosted runners.
+    # NOTE: type=gha cache works on self-hosted runners with access to GitHub's cache service.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build devcontainer image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: .devcontainer/Dockerfile
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
