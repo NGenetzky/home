@@ -2,14 +2,14 @@ name: Container
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - '.devcontainer/Dockerfile'
       - '.devcontainer/ngenetzky_devcontainer_debian.bash'
       - '.dockerignore'
       - '.github/workflows/container.yml'
   pull_request:
-    branches: [master]
+    branches: [main]
     paths:
       - '.devcontainer/Dockerfile'
       - '.devcontainer/ngenetzky_devcontainer_debian.bash'
@@ -46,5 +46,3 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository_owner }}/home:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
