@@ -8,9 +8,13 @@ on:
       - '.dockerignore'
       - '.bash_aliases'
       - '.config/yadm/bootstrap'
+      - '.local/bin/**'
       - '**/*.sh'
       - '**/*.bash'
+      - '**/*.ksh'
+      - '**/*.zsh'
       - '**/*.bats'
+      - '**/*.shlib'
       - '.github/workflows/ci.yml'
   pull_request:
     branches: [main]
@@ -19,9 +23,13 @@ on:
       - '.dockerignore'
       - '.bash_aliases'
       - '.config/yadm/bootstrap'
+      - '.local/bin/**'
       - '**/*.sh'
       - '**/*.bash'
+      - '**/*.ksh'
+      - '**/*.zsh'
       - '**/*.bats'
+      - '**/*.shlib'
       - '.github/workflows/ci.yml'
 
 permissions:

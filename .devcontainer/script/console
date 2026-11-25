@@ -9,7 +9,6 @@ set -x
 
 NAME="$(basename "$(pwd)")"
 NAME_CONTAINER="${NAME}"
-NAME_IMAGE="${NAME}"
 
 exec docker exec -it \
    "${NAME_CONTAINER}" \
