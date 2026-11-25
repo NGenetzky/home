@@ -8,7 +8,6 @@ set -eu
 set -x
 
 NAME="$(basename "$(pwd)")"
-NAME_IMAGE="${NAME}"
 
 # NOTE: Choosing not to use same uid and username.
 # --build-arg "USER_ID=$(id -u)"

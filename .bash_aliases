@@ -177,7 +177,7 @@ alias gsu='git submodule update'
 alias gsubup='git submodule update --init'
 alias gsw='git switch'
 alias gswc='git switch -c'
-alias gtl='gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'
+gtl() { git tag --sort=-v:refname -n -l "${1}*"; }
 alias gts='git tag -s'
 alias gtv='git tag | sort -V'
 alias gunignore='git update-index --no-assume-unchanged'

@@ -129,8 +129,8 @@ _bootstrap_vim(){
 
 _bootstrap_yadm(){
     case "$0" in
-        $HOME/.config/yadm/bootstrap) return 0 ;;
-        $HOME/.yadm/bootstrap) return 0 ;;
+        "$HOME/.config/yadm/bootstrap") return 0 ;;
+        "$HOME/.yadm/bootstrap") return 0 ;;
         *.config/yadm/bootstrap)
             YADM_SRCURI="${D_BASE}"
         ;;
